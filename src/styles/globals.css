@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root Variables */
+:root {
+    /* Light Theme */
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-light: #3b82f6;
+
+    --color-background: #f8fafc;
+    --color-foreground: #ffffff;
+    --color-card: #ffffff;
+
+    --color-text: #1e293b;
+    --color-text-light: #64748b;
+    --color-text-lighter: #94a3b8;
+
+    --color-border: #e2e8f0;
+    --color-input: #ffffff;
+
+    --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'Poppins', sans-serif;
+
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-full: 9999px;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+    --transition-normal: 250ms;
+}
+
+[data-theme='dark'] {
+    --color-background: #0f172a;
+    --color-foreground: #1e293b;
+    --color-card: #1e293b;
+
+    --color-text: #f8fafc;
+    --color-text-light: #cbd5e1;
+    --color-text-lighter: #94a3b8;
+
+    --color-border: #334155;
+    --color-input: #1e293b;
+}
+
+/* Base Styles */
+@layer base {
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply bg-background text-foreground font-[var(--font-primary)];
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-[var(--font-secondary)] font-bold;
+    }
+
+    * {
+        @apply border-[var(--color-border)];
+    }
+}
+
