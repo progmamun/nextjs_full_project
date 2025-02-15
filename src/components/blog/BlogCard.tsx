@@ -4,9 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CalendarDays, Clock, User, Bookmark } from "lucide-react";
 import { Post } from '@/types';
-
-
-
 interface BlogCardProps {
   post?: Post;
   variant?: 'default' | 'featured' | 'compact';
@@ -17,12 +14,13 @@ interface BlogCardProps {
 const defaultPost: Post = {
   id: "",
   title: "Untitled Post",
-  description: "No description available",
-  author: "string",
-  date: "No date",
-  readTime: "0 min read",
+  content: "No description available",
+  author: { name: "Anonymous", image: "", role: "" },
+  publishedAt: "No date",
+  readingTime: "0 min read",
   tags: [],
   slug: "",
+  imageUrl: "",
 };
 
 const BlogCard = ({ 
@@ -60,7 +58,7 @@ const BlogCard = ({
             </span>
             <span className="flex items-center gap-1">
               <Clock size={14} />
-              {post.readTime}
+              {post.readingTime}
             </span>
           </div>
         </div>
@@ -103,7 +101,7 @@ const BlogCard = ({
       
       <CardContent className="flex-grow">
         <p className="text-gray-600 line-clamp-3 mb-4">
-          {post.description}
+          {post.content}
         </p>
         <div className="flex flex-wrap gap-2">
           {post.tags?.map((tag, index) => (
@@ -118,11 +116,11 @@ const BlogCard = ({
         <div className="flex items-center gap-4 text-sm text-gray-500">
           <span className="flex items-center gap-1">
             <CalendarDays size={16} />
-            {post.date}
+            {post.publishedAt}
           </span>
           <span className="flex items-center gap-1">
             <Clock size={16} />
-            {post.readTime}
+            {post.readingTime}
           </span>
         </div>
         <Button 

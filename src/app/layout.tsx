@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
-import Header from "@/components/layout/Header";
+// import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import BackToTop from "@/components/common/BackToTop";
+import Navigation from "@/components/layout/Navigation";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,8 +23,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
     <body className={inter.className}>
       <ThemeProvider>
-        <Header/>
+        <Navigation/>
         {children}
+        <BackToTop/>
         <Footer/>
       </ThemeProvider>
     </body>

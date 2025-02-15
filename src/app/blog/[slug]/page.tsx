@@ -1,7 +1,5 @@
-// app/blog/[slug]/page.tsx
-
-import React from 'react';
 import { notFound } from 'next/navigation';
+import React from 'react';
 import { samplePosts } from '@/lib/data';
 import { Calendar, Clock, Share2 } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,17 +7,32 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
-const BlogDetailsPage = async ({ params }: { params: { slug: string } }) => {
-  // Await the params object to ensure we have valid data
-  const { slug } = await params;
+
+interface Post {
+  slug: string;
+  title: string;
+  author: {
+    name: string;
+    role: string;
+    image?: string;
+  };
+  publishedAt: string;
+  readingTime: string;
+  tags: string[];
+  imageUrl: string;
+  content: string;
+}
+
+// Convert to an async server component
+async function BlogDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = (await params);
 
   // Find the post based on the slug
-  const post = samplePosts.find(p => p.slug === slug);
+  const post = samplePosts.find((p: Post) => p.slug === slug);
 
   if (!post) {
-    // If no post is found, return 404 (not found)
     notFound();
-    return null; // Return null to prevent rendering the rest of the content
+    return null;
   }
 
   return (
@@ -29,7 +42,7 @@ const BlogDetailsPage = async ({ params }: { params: { slug: string } }) => {
         <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
           {post.title}
         </h1>
-        
+
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-muted-foreground">
           <div className="flex items-center gap-2">
             <Avatar className="h-8 w-8">
@@ -41,7 +54,7 @@ const BlogDetailsPage = async ({ params }: { params: { slug: string } }) => {
               <span className="text-xs">{post.author.role}</span>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
@@ -55,7 +68,7 @@ const BlogDetailsPage = async ({ params }: { params: { slug: string } }) => {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {post.tags.map(tag => (
+          {post.tags.map((tag) => (
             <Badge key={tag} variant="secondary">
               {tag}
             </Badge>
@@ -76,9 +89,7 @@ const BlogDetailsPage = async ({ params }: { params: { slug: string } }) => {
 
       {/* Content */}
       <article className="prose prose-lg max-w-none">
-        <p className="text-lg leading-relaxed">
-          {post.content}
-        </p>
+        <p className="text-lg leading-relaxed">{post.content}</p>
       </article>
 
       {/* Share Section */}
@@ -95,6 +106,6 @@ const BlogDetailsPage = async ({ params }: { params: { slug: string } }) => {
       </div>
     </div>
   );
-};
+}
 
 export default BlogDetailsPage;

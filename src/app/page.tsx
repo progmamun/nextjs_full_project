@@ -8,7 +8,7 @@ export default function HomePage() {
     <>
       <Hero />
       <FeaturedBlogs posts={samplePosts.slice(0, 3)} />
-      <UpcomingEventsPage events={sampleEvents.slice(0, 4)} />
+      <UpcomingEventsPage events={sampleEvents.slice(0, 2)} />
     </>
   );
 }
