@@ -2,38 +2,9 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, Clock, MapPin } from 'lucide-react';
+import { sampleEvents } from '@/lib/data';
 
 const EventsPage = () => {
-  const events = [
-    {
-      id: 1,
-      title: "Annual Fundraising Gala",
-      date: "2025-03-15",
-      time: "6:00 PM - 10:00 PM",
-      location: "Grand Community Center",
-      description: "Join us for our biggest fundraising event of the year, featuring dinner, entertainment, and a silent auction.",
-      image: "/api/placeholder/400/250"
-    },
-    {
-      id: 2,
-      title: "Community Cleanup Day",
-      date: "2025-03-22",
-      time: "9:00 AM - 2:00 PM",
-      location: "City Park",
-      description: "Help us keep our community clean and beautiful. Equipment and refreshments provided.",
-      image: "/api/placeholder/400/250"
-    },
-    {
-      id: 3,
-      title: "Workshop Series: Financial Literacy",
-      date: "2025-04-05",
-      time: "2:00 PM - 4:00 PM",
-      location: "Community Library",
-      description: "Learn essential financial skills in this free workshop series led by industry experts.",
-      image: "/api/placeholder/400/250"
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -47,10 +18,10 @@ const EventsPage = () => {
 
         {/* Events Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event) => (
+          {sampleEvents.map((event) => (
             <Card key={event.id} className="overflow-hidden">
               <img
-                src={event.image}
+                src={event?.image}
                 alt={event.title}
                 className="w-full h-48 object-cover"
               />
@@ -65,7 +36,7 @@ const EventsPage = () => {
                   </div>
                   <div className="flex items-center text-gray-600">
                     <Clock className="h-5 w-5 mr-2" />
-                    <span>{event.time}</span>
+                    <span>{event.date}</span>
                   </div>
                   <div className="flex items-center text-gray-600">
                     <MapPin className="h-5 w-5 mr-2" />

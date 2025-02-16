@@ -34,12 +34,19 @@ const BlogList = ({ posts = [] }: BlogListProps) => {
   }
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto px-4 py-8">
       {blogPosts.map((post) => (
         <Card
           key={post.id}
           className="flex flex-col hover:shadow-lg transition-shadow duration-200"
         >
+          <div className="relative">
+            <img
+              src="/api/placeholder/400/200"
+              alt={post.title}
+              className="w-full h-48 object-cover rounded-t-lg group-hover:opacity-90 transition-opacity"
+            />
+          </div>
           <CardHeader>
             <CardTitle className="text-xl font-bold line-clamp-2">
               {post.title}
