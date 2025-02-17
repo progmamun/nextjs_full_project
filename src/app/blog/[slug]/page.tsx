@@ -1,34 +1,32 @@
-import { notFound } from 'next/navigation';
 import React from 'react';
-import { samplePosts } from '@/lib/data';
+import { notFound } from 'next/navigation';
 import { Calendar, Clock, Share2 } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Post } from '@/types';
 
 
-interface Post {
-  slug: string;
-  title: string;
-  author: {
-    name: string;
-    role: string;
-    image?: string;
-  };
-  publishedAt: string;
-  readingTime: string;
-  tags: string[];
-  imageUrl: string;
-  content: string;
+async function fetchBlogs() {
+  const response = await fetch('https://rubshibir.github.io/api/blogs.json', {
+    next: { revalidate: 60 }, // Enable ISR with 60-second revalidation
+  });
+  return response.json();
 }
 
-// Convert to an async server component
-async function BlogDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = (await params);
+export async function generateStaticParams() {
+  const blogs = await fetchBlogs();
 
-  // Find the post based on the slug
-  const post = samplePosts.find((p: Post) => p.slug === slug);
+  return blogs.map((blog: Post) => ({
+    slug: blog.slug,
+  }));
+}
+
+export default async function BlogDetailsPage({ params }: { params: Promise<{ slug: string } >}) {
+  const { slug } = (await params); // Await the resolved params object
+  const blogs = await fetchBlogs();
+  const post = blogs.find((p: Post) => p.slug === slug);
 
   if (!post) {
     notFound();
@@ -39,10 +37,7 @@ async function BlogDetailsPage({ params }: { params: Promise<{ slug: string }> }
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header Section */}
       <div className="space-y-4 mb-8">
-        <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-          {post.title}
-        </h1>
-
+        <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{post.title}</h1>
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-muted-foreground">
           <div className="flex items-center gap-2">
             <Avatar className="h-8 w-8">
@@ -54,7 +49,6 @@ async function BlogDetailsPage({ params }: { params: Promise<{ slug: string }> }
               <span className="text-xs">{post.author.role}</span>
             </div>
           </div>
-
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
@@ -66,32 +60,24 @@ async function BlogDetailsPage({ params }: { params: Promise<{ slug: string }> }
             </div>
           </div>
         </div>
-
         <div className="flex flex-wrap gap-2">
-          {post.tags.map((tag) => (
+          {post.tags.map((tag: string) => (
             <Badge key={tag} variant="secondary">
               {tag}
             </Badge>
           ))}
         </div>
       </div>
-
       {/* Featured Image */}
       <Card className="mb-8">
         <CardContent className="p-0">
-          <img
-            src={post.imageUrl}
-            alt="Blog post featured image"
-            className="w-full h-auto rounded-lg"
-          />
+          <img src={post.imageUrl} alt="Blog post featured image" className="w-full h-auto rounded-lg" />
         </CardContent>
       </Card>
-
       {/* Content */}
       <article className="prose prose-lg max-w-none">
         <p className="text-lg leading-relaxed">{post.content}</p>
       </article>
-
       {/* Share Section */}
       <div className="mt-12 border-t pt-6">
         <div className="flex items-center justify-between">
@@ -107,5 +93,3 @@ async function BlogDetailsPage({ params }: { params: Promise<{ slug: string }> }
     </div>
   );
 }
-
-export default BlogDetailsPage;
