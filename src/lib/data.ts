@@ -386,3 +386,15 @@ export const sampleEvents: Event[] = [
     image: "/images/events/charity-run.jpg"
   }
 ];
+
+// export const getPosts = async (): Promise<Post[]> => {
+/*
+    "id": 1,
+    "title": "Fires of Eternity",
+    "author": "Isabella Rose",
+    "genre": "Fantasy",
+    "published_year": 2023,
+    "image": "/images/books/fires-of-eternity.jpg",
+    "publishedAt": "2023-03-15",
+    "link": "https://www.amazon.com/fires-of-eternity"
+*/

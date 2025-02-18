@@ -37,7 +37,8 @@ const Navigation = () => {
   }, [lastScrollY]);
 
   const navLinks = [
-    { href: '/blog', label: 'Blog' },
+    { href: '/blogs', label: 'Blogs' },
+    { href: '/books', label: 'Books' },
     { href: '/events', label: 'Events' },
     { href: '/contact', label: 'Contact' },
     { href: '/about', label: 'About' },

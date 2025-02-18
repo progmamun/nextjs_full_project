@@ -22,3 +22,14 @@ export interface Event {
   description: string;
   image: string;
 }
+
+export interface Book {
+  id: number;
+  title: string;
+  author: string;
+  genre: string;
+  published_year: number;
+  image: string;
+  publishedAt: string;
+  link: string;
+}

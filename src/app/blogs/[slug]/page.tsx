@@ -6,26 +6,18 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Post } from '@/types';
-
-
-async function fetchBlogs() {
-  const response = await fetch('https://rubshibir.github.io/api/blogs.json', {
-    next: { revalidate: 60 }, // Enable ISR with 60-second revalidation
-  });
-  return response.json();
-}
+import { getAllBlogs } from '@/utils/getAllBlogs';
 
 export async function generateStaticParams() {
-  const blogs = await fetchBlogs();
-
-  return blogs.map((blog: Post) => ({
-    slug: blog.slug,
-  }));
+  const blogs = await getAllBlogs();
+  const sliceBlogs = blogs.slice(0, 9); // Slice the first 10 blogs
+  const slugParams = sliceBlogs.map((blog: Post) => ({ slug: blog.slug }));
+  return slugParams;
 }
 
 export default async function BlogDetailsPage({ params }: { params: Promise<{ slug: string } >}) {
   const { slug } = (await params); // Await the resolved params object
-  const blogs = await fetchBlogs();
+  const blogs = await getAllBlogs();
   const post = blogs.find((p: Post) => p.slug === slug);
 
   if (!post) {
