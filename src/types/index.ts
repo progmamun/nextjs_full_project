@@ -25,12 +25,18 @@ export interface Event {
 }
 
 export interface Book {
-  id: number;
+  id: string;
   title: string;
   author: string;
   genre: string;
   published_year: number;
   image: string;
-  publishedAt: string;
   link: string;
+  publishedAt: string;
+}
+
+export interface Photo {
+  id: string;
+  title: string;
+  image: string;
 }
