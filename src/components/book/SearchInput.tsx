@@ -1,6 +1,6 @@
 'use client'; // This directive tells Next.js to treat this file as a Client Component
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import debounce from 'lodash.debounce';
 
 interface SearchInputProps {
@@ -10,8 +10,9 @@ interface SearchInputProps {
 const SearchInput: React.FC<SearchInputProps> = ({ initialSearch }) => {
   const [search, setSearch] = useState(initialSearch);
 
-  useEffect(() => {
-    const debouncedChangeHandler = debounce((value: string) => {
+  // Use useCallback to memoize the debounced function
+  const debouncedChangeHandler = useCallback(
+    debounce((value: string) => {
       // Update the URL with the new search query
       const url = new URL(window.location.href);
       url.searchParams.set('search', value);
@@ -20,19 +21,22 @@ const SearchInput: React.FC<SearchInputProps> = ({ initialSearch }) => {
 
       // Trigger a re-fetch of the data by reloading the page
       window.location.reload();
-    }, 300); // Debounce delay of 300ms
+    }, 700), // Debounce delay of 700ms
+    [] // No dependencies, so pass an empty array
+  );
 
-    debouncedChangeHandler(search);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearch(value);
+    debouncedChangeHandler(value);
+  };
 
+  useEffect(() => {
     // Cleanup the debounce on useEffect cleanup.
     return () => {
       debouncedChangeHandler.cancel();
     };
-  }, [search]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
+  }, [debouncedChangeHandler]);
 
   return (
     <input

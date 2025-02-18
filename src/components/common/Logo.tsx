@@ -1,18 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import logo from '../../../public/assets/logo.png';
 
 const Logo = () => {
   return (
     <Link href="/" className="flex items-center space-x-2">
       <Image
-        src="/images/logo.svg"
+        src={logo}
         alt="NonProfit Logo"
-        width={40}
-        height={40}
+        width={100}
+        height={100}
         className="w-10 h-10"
       />
-      <span className="text-2xl font-bold text-blue-600">NonProfit Name</span>
+      <span className="md:text-2xl font-bold text-sky-600">রবিবা, শিবির</span>
     </Link>
   );
 };

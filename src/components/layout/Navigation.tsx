@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import { ModeToggle } from '../theme/ThemeToggle';
+import Logo from '../common/Logo';
 
 const Navigation = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -58,9 +59,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-blue-600">
-              NonProfit
-            </Link>
+              <Logo/>
           </div>
 
           {/* Desktop Navigation */}
