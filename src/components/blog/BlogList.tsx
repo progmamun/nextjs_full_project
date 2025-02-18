@@ -84,7 +84,7 @@ const BlogList = ({ posts = [] }: BlogListProps) => {
 
             <Button variant={'outline'}>
               <Link
-                href={`/blog/${post.slug}`}
+                href={`/blogs/${post.slug}`}
               >
                 Read More
               </Link>

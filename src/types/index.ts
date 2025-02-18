@@ -21,6 +21,7 @@ export interface Event {
   location: string;
   description: string;
   image: string;
+  link?: string;
 }
 
 export interface Book {

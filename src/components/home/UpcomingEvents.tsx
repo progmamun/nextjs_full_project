@@ -1,10 +1,11 @@
 import React from 'react';
 import { Calendar, MapPin } from 'lucide-react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Event } from '../../types';
+// import { Button } from '../ui/button';
 
 
-const EventCard = ({ title, date, location, description }: Event) => {
+const EventCard = ({ title, date, location, description, link }: Event) => {
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
       month: 'long',
@@ -14,7 +15,7 @@ const EventCard = ({ title, date, location, description }: Event) => {
   };
 
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300">
+    <Card className="group hover:shadow-lg transition-all duration-300 mx-auto">
       <div className="relative">
         <img
           src="/api/placeholder/400/200"
@@ -42,13 +43,29 @@ const EventCard = ({ title, date, location, description }: Event) => {
             <Calendar className="w-4 h-4 text-blue-600" />
             <span className="text-sm">{formatDate(date)}</span>
           </div>
-          
+
           <div className="flex items-center gap-2 text-gray-600">
             <MapPin className="w-4 h-4 text-blue-600" />
             <span className="text-sm">{location}</span>
           </div>
         </div>
       </CardContent>
+      {link && (
+        <CardFooter className="p-4 pt-0">
+          <div className="flex justify-center items-center w-full">
+            <a
+              href={link}
+              className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Register Now
+            </a>
+          </div>
+        </CardFooter>
+      )}
+
+
     </Card>
   );
 };
@@ -59,21 +76,21 @@ interface UpcomingEventsPageProps {
 
 
 const UpcomingEventsPage: React.FC<UpcomingEventsPageProps> = ({ events }) => {
-  
+
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center mb-12">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
             Upcoming Events
           </h1>
           <p className="text-lg text-gray-600">
-           {`Join us at our upcoming events and be part of our community's journey`}
+            {`Join us at our upcoming events and be part of our community's journey`}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
           {events.map((event) => (
             <EventCard key={event.id} {...event} />
           ))}
