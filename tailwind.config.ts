@@ -9,9 +9,11 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-    colors: {
-    }
-    }
+      fontFamily: {
+        sans: ['Noto Sans Bengali', 'sans-serif'],
+        serif: ['Tiro Bangla', 'serif'],
+      },
+    },
   },
   plugins: [],
 } satisfies Config;
