@@ -1,17 +1,18 @@
-import BookCard from '@/components/book/BookCard';
+// import BlogList from '@/components/blog/BlogList';
 import { Pagination } from '@/components/common/Pagination';
 import { getAllBooks } from '@/utils/getAllBooks';
 import Head from 'next/head';
+import BookCard from './BookCard';
 
 const POSTS_PER_PAGE = 9;
 
 export default async function BlogPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
   const { page } = (await searchParams);
 
-  // Fetch books first
+  // Fetch blogs first
   const books = await getAllBooks();
   
-  // Sort books by publishedAt (newest first)
+  // Sort blogs by publishedAt (newest first)
   const sortedBooks = [...books].sort((a, b) => {
     const dateA = new Date(a.publishedAt).getTime();
     const dateB = new Date(b.publishedAt).getTime();
@@ -33,10 +34,12 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
         <meta name="description" content={`Browse our blog posts on page ${currentPage}`} />
       </Head>
       <h1 className="heading-1 mb-8">Books Collection</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-
       <BookCard books={posts} />
-      </div>
+      {/* <BlogList posts={posts} /> */}
+      {/* {currentBooks.map((books) => (
+          // <BookCard key={books.id} {...books} />
+          <BookCard key={books.id} books={[books]}  />
+        ))} */}
       
       <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/books" />
     </div>

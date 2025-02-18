@@ -2,7 +2,6 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-// import { Button } from "@/components/ui/button";
 import { CalendarDays, Clock, User } from "lucide-react";
 import { Post } from '@/types';
 import Link from "next/link";
@@ -11,20 +10,11 @@ import { Button } from '../ui/button';
 
 interface BlogListProps {
   posts?: Post[];
-  // onPostClick?: (slug: string) => void;
 }
 
 const BlogCard = ({ posts = [] }: BlogListProps) => {
-  // If posts is undefined or null, return empty array
   const blogPosts = posts || [];
 
-  // const handleClick = (slug: string) => {
-  //   if (onPostClick) {
-  //     onPostClick(slug);
-  //   }
-  // };
-
-  // If no posts, show a message
   if (blogPosts.length === 0) {
     return (
       <Card className="p-6 text-center">
@@ -34,7 +24,7 @@ const BlogCard = ({ posts = [] }: BlogListProps) => {
   }
 
   return (
-    <div className="">
+    <>
       {blogPosts.map((post) => (
         <Card
           key={post.id}
@@ -92,7 +82,7 @@ const BlogCard = ({ posts = [] }: BlogListProps) => {
           </CardFooter>
         </Card>
       ))}
-    </div>
+    </>
   );
 };
 

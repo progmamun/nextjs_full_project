@@ -1,6 +1,5 @@
-// import BlogList from '@/components/blog/BlogList';
-import BooksPageClient from '@/components/book/BooksPageClient';
 import FeaturedBlogs from '@/components/home/FeaturedBlogs';
+import FeaturedBooks from '@/components/home/FeaturedBook';
 import Hero from '@/components/home/Hero';
 import UpcomingEventsPage from '@/components/home/UpcomingEvents';
 import { Book, Event, Post } from '@/types';
@@ -18,9 +17,8 @@ export default function HomePage() {
     <>
       <Hero />
       <UpcomingEventsPage events={events.slice(0, 2)} />
-      {/* <BlogList posts={posts.slice(0, 3)} /> */}
       <FeaturedBlogs posts={posts} />
-      <BooksPageClient books={books.slice(0,6)} />
+      <FeaturedBooks books={books} />
     </>
   );
 }
