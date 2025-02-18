@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from '@/components/theme/ThemeProvider';
+// import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 // import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/common/BackToTop";
 import Navigation from "@/components/layout/Navigation";
+import { ThemeProvider } from "@/components/theme/theme-provider"
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,14 +22,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-    <body className={inter.className}>
-      <ThemeProvider>
+      <body className={inter.className}>
+        {/* <ThemeProvider>
         <Navigation/>
         {children}
         <BackToTop/>
         <Footer/>
-      </ThemeProvider>
-    </body>
-  </html>
+      </ThemeProvider> */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navigation />
+          {children}
+          <BackToTop />
+          <Footer />
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

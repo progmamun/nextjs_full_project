@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import ThemeToggle from '../theme/ThemeToggle';
+// import ThemeToggle from '../theme/ThemeToggle';
 import { Menu } from 'lucide-react';
 
 const Header = () => {
@@ -31,12 +31,12 @@ const Header = () => {
                 Contact
               </Link>
             </div>
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-text hover:text-primary"

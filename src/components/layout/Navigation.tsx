@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
+import { ModeToggle } from '../theme/ThemeToggle';
 
 const Navigation = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -64,6 +65,7 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-8">
+            <ModeToggle/>
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -76,7 +78,9 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Navigation */}
+          
           <div className="md:hidden">
+          <ModeToggle/>
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
