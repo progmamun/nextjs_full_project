@@ -1,6 +1,4 @@
 'use client';
-
-// InfiniteScrollBlog.tsx - Client Component
 import React, { useState, useRef, useEffect } from 'react';
 import { Calendar, Clock } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
@@ -32,7 +30,7 @@ export default function InfiniteScrollBlog({ initialPost, allPosts }: InfiniteSc
   // Update URL when current post changes
   useEffect(() => {
     if (currentPostIndex >= 0 && uniqueAllPosts[currentPostIndex]) {
-      const newUrl = `/blog/${uniqueAllPosts[currentPostIndex].slug}`;
+      const newUrl = `/blogs/${uniqueAllPosts[currentPostIndex].slug}`;
       window.history.pushState({}, '', newUrl);
     }
   }, [currentPostIndex, uniqueAllPosts]);
