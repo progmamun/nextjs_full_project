@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Book } from '@/types';
-import { Button, Image } from '../common/StyleComponents';
+import { Image } from '../common/StyleComponents';
 
 interface BookListProps {
   books?: Book[];
@@ -32,7 +32,7 @@ const BookCard = ({ books = [] }: BookListProps) => {
               src={book?.image}
               alt={book.title}
               aspectRatio='square'
-              
+
             />
           </CardHeader>
 
@@ -52,13 +52,15 @@ const BookCard = ({ books = [] }: BookListProps) => {
             </div>
           </CardContent>
 
-          <CardFooter className="p-4 pt-0">
-            <Button variant="outline" size="icon" className="w-full">
+          <CardFooter className="p-4 pt-0 flex justify-center">
+            <button className="px-5 py-2 bg-blue-500 text-white font-medium rounded-full shadow-md border border-blue-600 transition-all duration-300 hover:bg-transparent hover:text-blue-500 hover:border-blue-500 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
               <a href={book.link} target="_blank" rel="noopener noreferrer">
                 View
               </a>
-            </Button>
+            </button>
           </CardFooter>
+
+
         </Card>
       ))}
     </>
