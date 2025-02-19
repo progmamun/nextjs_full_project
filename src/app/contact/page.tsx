@@ -7,14 +7,13 @@ import { Button } from '@/components/ui/button';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import PageHeading from '@/components/common/PageHeading';
 import emailjs from 'emailjs-com';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'react-toastify';
 
 const serviceId: string = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
 const templateId: string = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
 const userId: string = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || '';
 
 const ContactPage = () => {
-    const { toast } = useToast();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -29,16 +28,25 @@ const ContactPage = () => {
         message: formData.get('message'),
     };
 
+
     emailjs.send(serviceId, templateId, templateParams, userId)
         .then((response) => {
-            
-        toast({
-          description: `SUCCESS! ${response.status} ${response.text}`
-        });
+            toast(`Success! Your message has been sent. ${response.status}`, {
+                position: "top-right", autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+            })
+            // Reset the form after successful submission
+            form.reset();
         }, (error) => {
-            toast({
-                description: `FAILED... ${error}}`
-              });
+            toast
+              (`FAILED... ${error}`, {
+                position: "top-right", autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+            })
         });
     };
 
