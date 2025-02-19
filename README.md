@@ -10,3 +10,4 @@
 
 - `https://rubshibir.github.io/api/blogs.json`
 - `https://rubshibir.github.io/api/events.json`
+

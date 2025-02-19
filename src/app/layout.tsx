@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/common/BackToTop";
 import Navigation from "@/components/layout/Navigation";
 import { ThemeProvider } from "@/components/theme/theme-provider"
+import { Toaster } from "@/components/ui/toaster";
 
 const tiroBangla = Tiro_Bangla({ subsets: ['bengali'], weight: '400' });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
         >
           <Navigation />
           {children}
+          <Toaster />
           <BackToTop />
           <Footer />
         </ThemeProvider>

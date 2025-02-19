@@ -6,11 +6,40 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import PageHeading from '@/components/common/PageHeading';
+import emailjs from 'emailjs-com';
+import { useToast } from '@/hooks/use-toast';
+
+const serviceId: string = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
+const templateId: string = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
+const userId: string = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || '';
 
 const ContactPage = () => {
+    const { toast } = useToast();
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Add your form submission logic here
+      // Extract form data
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const templateParams = {
+        name: formData.get('firstName') + ' ' + formData.get('lastName'),
+        email: formData.get('email'),
+        message: formData.get('message'),
+    };
+
+    emailjs.send(serviceId, templateId, templateParams, userId)
+        .then((response) => {
+            
+        toast({
+          description: `SUCCESS! ${response.status} ${response.text}`
+        });
+        }, (error) => {
+            toast({
+                description: `FAILED... ${error}}`
+              });
+        });
     };
 
     return (
@@ -73,20 +102,20 @@ const ContactPage = () => {
                                             <label htmlFor="firstName" className="text-sm font-medium">
                                                 First Name
                                             </label>
-                                            <Input id="firstName" placeholder="John" required />
+                                            <Input id="firstName" name="firstName" placeholder="John" required />
                                         </div>
                                         <div className="space-y-2">
                                             <label htmlFor="lastName" className="text-sm font-medium">
                                                 Last Name
                                             </label>
-                                            <Input id="lastName" placeholder="Doe" required />
+                                            <Input id="lastName" name="lastName" placeholder="Doe" required />
                                         </div>
                                     </div>
                                     <div className="space-y-2">
                                         <label htmlFor="email" className="text-sm font-medium">
                                             Email
                                         </label>
-                                        <Input id="email" type="email" placeholder="john@example.com" required />
+                                        <Input id="email" name="email" type="email" placeholder="john@example.com" required />
                                     </div>
                                     <div className="space-y-2">
                                         <label htmlFor="message" className="text-sm font-medium">
@@ -94,6 +123,7 @@ const ContactPage = () => {
                                         </label>
                                         <Textarea
                                             id="message"
+                                            name="message"
                                             placeholder="Your message here..."
                                             className="min-h-32"
                                             required
