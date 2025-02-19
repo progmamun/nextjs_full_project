@@ -1,23 +1,23 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { Calendar, Clock, Share2 } from 'lucide-react';
+import { Calendar, Clock } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Post } from '@/types';
 import { getAllBlogs } from '@/utils/getAllBlogs';
 import PageHeading from '@/components/common/PageHeading';
+import ShareButton from '@/components/common/ShareButton';
 
 export async function generateStaticParams() {
   const blogs = await getAllBlogs();
-  const sliceBlogs = blogs.slice(0, 9); // Slice the first 10 blogs
+  const sliceBlogs = blogs.slice(0, 9); // Slice the first 9 blogs
   const slugParams = sliceBlogs.map((blog: Post) => ({ slug: blog.slug }));
   return slugParams;
 }
 
-export default async function BlogDetailsPage({ params }: { params: Promise<{ slug: string } >}) {
-  const { slug } = (await params); // Await the resolved params object
+export default async function BlogDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params; // Await the resolved params object
   const blogs = await getAllBlogs();
   const post = blogs.find((p: Post) => p.slug === slug);
 
@@ -26,11 +26,14 @@ export default async function BlogDetailsPage({ params }: { params: Promise<{ sl
     return null;
   }
 
+  const articleUrl = typeof window !== 'undefined' ? window.location.href : '';
+
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="dark:bg-gray-900">
+    <div className="max-w-4xl mx-auto px-4 py-8 ">
       {/* Header Section */}
       <div className="space-y-4 mb-8">
-      <PageHeading title={post.title} as='h2' />
+        <PageHeading title={post.title} as='h2' />
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-muted-foreground">
           <div className="flex items-center gap-2">
             <Avatar className="h-8 w-8">
@@ -76,13 +79,11 @@ export default async function BlogDetailsPage({ params }: { params: Promise<{ sl
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold">Share this article</h3>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm">
-              <Share2 className="h-4 w-4 mr-2" />
-              Share
-            </Button>
+            <ShareButton url={articleUrl} title={post.title} />
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
