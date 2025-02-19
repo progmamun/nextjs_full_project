@@ -16,7 +16,7 @@ const FeaturedBlogs: React.FC<FeaturedBlogsProps> = ({ posts }) => {
   });
   // console.log(posts, 'posts');
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-12 bg-white text-black dark:bg-gray-900 dark:text-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold">Latest News</h2>

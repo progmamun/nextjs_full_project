@@ -2,7 +2,7 @@ import styles from './hero.module.css';
 
 const Hero = () => {
     return (
-      <section className={`${styles.bgImage} text-white `}>
+      <section className={`${styles.bgImage} bg-white text-black dark:bg-gray-900 dark:text-white`}>
       <div className="text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           {/* <h1 className="text-4xl font-bold mb-6">Making a Difference Together</h1>

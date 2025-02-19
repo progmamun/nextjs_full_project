@@ -4,12 +4,12 @@ import { Heart, Target } from 'lucide-react';
 
 const AboutPage = () => {
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
                 {/* Hero Section */}
                 <div className="text-center mb-16">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">About Us</h1>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <h1 className="text-4xl font-bold mb-4">About Us</h1>
+                    <p className="text-lg max-w-2xl mx-auto">
                         Making a difference in our community through dedication, compassion, and service.
                     </p>
                 </div>
@@ -22,7 +22,7 @@ const AboutPage = () => {
                             <h2 className="text-2xl font-bold">Our Mission</h2>
                         </div>
                         <CardContent className="p-0">
-                            <p className="text-gray-600">
+                            <p className="">
                                 To empower and strengthen our community by providing essential resources,
                                 education, and support to those in need, while fostering sustainable
                                 development and positive social change.
@@ -36,7 +36,7 @@ const AboutPage = () => {
                             <h2 className="text-2xl font-bold">Our Vision</h2>
                         </div>
                         <CardContent className="p-0">
-                            <p className="text-gray-600">
+                            <p className="">
                                 A world where every individual has access to opportunities for growth,
                                 where communities thrive through mutual support, and where positive
                                 change creates lasting impact.
@@ -77,14 +77,14 @@ const AboutPage = () => {
                                 />
                                 <h3 className="text-xl font-bold mb-1">{member.name}</h3>
                                 <p className="text-blue-600 mb-2">{member.role}</p>
-                                <p className="text-gray-600">{member.bio}</p>
+                                <p className="">{member.bio}</p>
                             </Card>
                         ))}
                     </div>
                 </div>
 
                 {/* Impact Section */}
-                <div className="bg-white rounded-lg shadow-lg p-8">
+                <div className="rounded-lg shadow-lg p-8">
                     <h2 className="text-3xl font-bold text-center mb-8">Our Impact</h2>
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
@@ -95,7 +95,7 @@ const AboutPage = () => {
                         ].map((stat) => (
                             <div key={stat.label} className="text-center">
                                 <p className="text-4xl font-bold text-blue-600 mb-2">{stat.number}</p>
-                                <p className="text-gray-600">{stat.label}</p>
+                                <p className="">{stat.label}</p>
                             </div>
                         ))}
                     </div>

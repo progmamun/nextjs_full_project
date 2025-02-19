@@ -98,7 +98,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="md:hidden flex items-center space-x-2 bg-white text-black dark:bg-gray-900 dark:text-white">
             <ModeToggle />
             <Sheet>
               <SheetTrigger asChild>

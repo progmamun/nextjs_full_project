@@ -13,12 +13,12 @@ const ContactPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
                 {/* Header Section */}
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
+                    <p className="text-lg max-w-2xl mx-auto">
                         {"We'd love to hear from you. Please fill out the form below or reach out through our contact information."}
                     </p>
                 </div>

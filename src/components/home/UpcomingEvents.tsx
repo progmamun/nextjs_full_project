@@ -79,13 +79,13 @@ const UpcomingEventsPage: React.FC<UpcomingEventsPageProps> = ({ events }) => {
 
 
   return (
-    <div className="bg-gray-50 py-12">
+    <div className="bg-white text-black dark:bg-gray-900 dark:text-white py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center mb-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl font-bold mb-4">
             Upcoming Events
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg">
             {`Join us at our upcoming events and be part of our community's journey`}
           </p>
         </div>

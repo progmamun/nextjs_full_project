@@ -53,11 +53,11 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-7xl">
-      <div>
+    <div className="container mx-auto py-12 max-w-7xl bg-white text-black dark:bg-gray-900 dark:text-white">
+      <div className="text-center mb-8">
         <h1 className="text-3xl font-bold mb-4">Photo Gallery</h1>
       </div>
-      <Slider {...settings}>
+      <Slider {...settings} className="">
         {photos.map((photo) => (
           <div
             key={photo.id}
