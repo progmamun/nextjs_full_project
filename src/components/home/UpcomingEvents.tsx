@@ -2,6 +2,7 @@ import React from 'react';
 import { Calendar, MapPin } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Event } from '../../types';
+import PageHeading from '../common/PageHeading';
 // import { Button } from '../ui/button';
 
 
@@ -82,12 +83,11 @@ const UpcomingEventsPage: React.FC<UpcomingEventsPageProps> = ({ events }) => {
     <div className="bg-white text-black dark:bg-gray-900 dark:text-white py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center mb-12">
-          <h1 className="text-3xl font-bold mb-4">
-            Upcoming Events
-          </h1>
-          <p className="text-lg">
-            {`Join us at our upcoming events and be part of our community's journey`}
-          </p>
+          <PageHeading
+            title='Upcoming Events'
+            as='h2'
+            description='Join us at our upcoming events and be part of our community journey'
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">

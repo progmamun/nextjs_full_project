@@ -1,17 +1,18 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../theme/ThemeToggle";
 import Logo from "../common/Logo";
+import { motion } from "framer-motion";
 
 const Navigation = () => {
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Track open/close state for mobile nav
 
   // Handle initial mounting
   useEffect(() => {
@@ -100,14 +101,30 @@ const Navigation = () => {
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-2 bg-white text-black dark:bg-gray-900 dark:text-white">
             <ModeToggle />
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-64">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <Menu className="h-6 w-6" />
+            </Button>
+
+            {/* Animated Navigation */}
+            {isOpen && (
+              <motion.div
+                initial={{ opacity: 0, x: "100%" }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: "100%" }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                className="fixed inset-y-0 right-0 bg-white dark:bg-gray-900 w-64 shadow-lg z-50 p-6"
+              >
                 <div className="flex flex-col space-y-4 mt-8">
+                  <button
+                    className="text-gray-700 hover:text-red-500 dark:text-gray-200 self-end"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Close
+                  </button>
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
@@ -118,8 +135,8 @@ const Navigation = () => {
                     </Link>
                   ))}
                 </div>
-              </SheetContent>
-            </Sheet>
+              </motion.div>
+            )}
           </div>
         </div>
       </div>

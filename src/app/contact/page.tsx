@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import PageHeading from '@/components/common/PageHeading';
 
 const ContactPage = () => {
     const handleSubmit = (e: React.FormEvent) => {
@@ -17,7 +18,7 @@ const ContactPage = () => {
             <div className="max-w-7xl mx-auto">
                 {/* Header Section */}
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
+                    <PageHeading title='Contact Us' as='h1' />
                     <p className="text-lg max-w-2xl mx-auto">
                         {"We'd love to hear from you. Please fill out the form below or reach out through our contact information."}
                     </p>

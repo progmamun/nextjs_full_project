@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Post } from '@/types';
 import { getAllBlogs } from '@/utils/getAllBlogs';
+import PageHeading from '@/components/common/PageHeading';
 
 export async function generateStaticParams() {
   const blogs = await getAllBlogs();
@@ -29,7 +30,7 @@ export default async function BlogDetailsPage({ params }: { params: Promise<{ sl
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header Section */}
       <div className="space-y-4 mb-8">
-        <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{post.title}</h1>
+      <PageHeading title={post.title} as='h2' />
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-muted-foreground">
           <div className="flex items-center gap-2">
             <Avatar className="h-8 w-8">

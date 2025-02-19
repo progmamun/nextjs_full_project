@@ -20,12 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="bn" suppressHydrationWarning>
-      <body className={tiroBangla.className + "min-h-screen bg-background"}>
+      <body className={tiroBangla.className + "min-h-screen bg-background text-foreground"}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          // disableTransitionOnChange
+          disableTransitionOnChange
         >
           <Navigation />
           {children}

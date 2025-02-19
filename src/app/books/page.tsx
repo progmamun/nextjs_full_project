@@ -7,6 +7,7 @@ import Head from 'next/head';
 const POSTS_PER_PAGE = 9;
 
 import { Book } from '@/types';
+import PageHeading from '@/components/common/PageHeading';
 
 interface BlogPageProps {
   searchParams: Promise<{ page?: string; search?: string }>;
@@ -41,17 +42,20 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const posts = sortedBooks.slice(startIndex, endIndex);
 
   return (
-    <div className="page-container max-w-7xl mx-auto px-4 py-8">
+    <div className="dark:bg-gray-900">
+      
+      <div className="container max-w-7xl mx-auto px-4 py-8">
       <Head>
         <title>Books - Page {currentPage}</title>
         <meta name="description" content={`Browse our blog posts on page ${currentPage}`} />
       </Head>
-      <h1 className="heading-1 mb-8">Books Collection</h1>
+      <PageHeading title='Books Collection' as='h2' />
       <SearchInput initialSearch={search || ''} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <BookCard books={posts} />
       </div>
       <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/books" />
+      </div>
     </div>
   );
 }

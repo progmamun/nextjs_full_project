@@ -1,4 +1,5 @@
 import BlogList from '@/components/blog/BlogList';
+import PageHeading from '@/components/common/PageHeading';
 import { Pagination } from '@/components/common/Pagination';
 import { getAllBlogs } from '@/utils/getAllBlogs';
 import Head from 'next/head';
@@ -27,14 +28,16 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
   const posts = sortedBlogs.slice(startIndex, endIndex);
 
   return (
-    <div className="page-container max-w-7xl mx-auto px-4 py-8">
+    <div className="dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 py-8">
       <Head>
-        <title>Blog - Page {currentPage}</title>
+        <title>Blogs - Page {currentPage}</title>
         <meta name="description" content={`Browse our blog posts on page ${currentPage}`} />
       </Head>
-      <h1 className="heading-1 mb-8">Blog</h1>
+      <PageHeading title='Blogs' as='h1' />
       <BlogList posts={posts} />
       <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/blogs" />
+      </div>
     </div>
   );
 }

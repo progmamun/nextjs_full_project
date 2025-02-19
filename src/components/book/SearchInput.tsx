@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import debounce from 'lodash.debounce';
+import { Input } from '../ui/input';
 
 interface SearchInputProps {
   initialSearch: string;
@@ -39,10 +40,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ initialSearch }) => {
   }, [debouncedChangeHandler]);
 
   return (
-    <input
+    <Input
       type="text"
       placeholder="Search books..."
-      className="mb-4 p-2 border rounded"
+      className="mb-4 p-2 border rounded md:w-5/12"
       value={search}
       onChange={handleChange}
     />

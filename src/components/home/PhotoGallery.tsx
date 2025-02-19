@@ -5,6 +5,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Photo } from '@/types';
+import PageHeading from '../common/PageHeading';
 
 
 interface PhotoGalleryProps {
@@ -53,47 +54,49 @@ const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
   };
 
   return (
-    <div className="container mx-auto py-12 max-w-7xl bg-white text-black dark:bg-gray-900 dark:text-white">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-4">Photo Gallery</h1>
-      </div>
-      <Slider {...settings} className="">
-        {photos.map((photo) => (
+    <div className="bg-white text-black dark:bg-gray-900 dark:text-white">
+      <div className='container mx-auto py-12 max-w-7xl'>
+        <div className="text-center mb-8">
+          <PageHeading title='Photo Gallery' as='h2' />
+        </div>
+        <Slider {...settings} className="">
+          {photos.map((photo) => (
+            <div
+              key={photo.id}
+              className="relative h-64 cursor-pointer"
+              onClick={() => setSelectedPhoto(photo)}
+            >
+              <Image
+                src={photo.image}
+                alt={photo.title}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 flex items-end">
+                <h2 className="text-white text-lg font-bold bg-black bg-opacity-50 p-2">
+                  {photo.title}
+                </h2>
+              </div>
+            </div>
+          ))}
+        </Slider>
+        {selectedPhoto && (
           <div
-            key={photo.id}
-            className="relative h-64 cursor-pointer"
-            onClick={() => setSelectedPhoto(photo)}
+            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+            onClick={() => setSelectedPhoto(null)}
           >
             <Image
-              src={photo.image}
-              alt={photo.title}
+              src={selectedPhoto.image}
+              alt={selectedPhoto.title}
               layout="fill"
-              objectFit="cover"
-              className="rounded-lg"
-              loading="lazy"
+              objectFit="contain"
+              className="max-h-full max-w-full"
             />
-            <div className="absolute inset-0 flex items-end">
-              <h2 className="text-white text-lg font-bold bg-black bg-opacity-50 p-2">
-                {photo.title}
-              </h2>
-            </div>
           </div>
-        ))}
-      </Slider>
-      {selectedPhoto && (
-        <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
-          onClick={() => setSelectedPhoto(null)}
-        >
-          <Image
-            src={selectedPhoto.image}
-            alt={selectedPhoto.title}
-            layout="fill"
-            objectFit="contain"
-            className="max-h-full max-w-full"
-          />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

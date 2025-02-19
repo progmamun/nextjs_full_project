@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Book } from '@/types';
 import BookCard from '../book/BookCard';
+import PageHeading from '../common/PageHeading';
 
 
 interface FeaturedBooksProps {
@@ -18,7 +19,7 @@ const FeaturedBooks: React.FC<FeaturedBooksProps> = ({ books }) => {
     <section className="py-12 bg-white text-black dark:bg-gray-900 dark:text-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Book Collection</h2>
+        <PageHeading title='Book Collection' as='h2'/>
           <Link href="/books"
             className="text-blue-600 hover:text-blue-700">View All Books →
           </Link>
