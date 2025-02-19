@@ -166,7 +166,7 @@ export default function InfiniteScrollBlog({ initialPost, allPosts }: InfiniteSc
                 <h3 className="text-lg font-semibold">Share this article</h3>
                 <div className="flex gap-2">
                   <ShareButton 
-                    url={`${typeof window !== 'undefined' ? window.location.origin : ''}/blog/${post.slug}`} 
+                    url={`${typeof window !== 'undefined' ? window.location.origin : ''}/blogs/${post.slug}`} 
                     title={post.title} 
                   />
                 </div>
