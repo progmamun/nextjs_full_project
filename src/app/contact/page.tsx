@@ -9,9 +9,9 @@ import PageHeading from '@/components/common/PageHeading';
 import emailjs from 'emailjs-com';
 import toast from 'react-hot-toast';
 
-const serviceId: string = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
-const templateId: string = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
-const userId: string = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || '';
+const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
+const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
+const userId = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || '';
 
 const ContactPage = () => {
 
@@ -29,7 +29,7 @@ const ContactPage = () => {
         };
 
 
-        emailjs.send(serviceId, templateId, templateParams, userId)
+        emailjs.send(serviceId, templateId, templateParams, userId )
             .then((response) => {
                 toast.success(`Successfully created! ${response.status}`);
                 // Reset the form after successful submission

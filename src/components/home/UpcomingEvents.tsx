@@ -5,7 +5,7 @@ import { Event } from '../../types';
 import PageHeading from '../common/PageHeading';
 
 
-const EventCard = ({ title, date, location, description, link }: Event) => {
+const EventCard = ({ title, date, location, description, link, image }: Event) => {
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
       month: 'long',
@@ -18,13 +18,13 @@ const EventCard = ({ title, date, location, description, link }: Event) => {
     <Card className="group hover:shadow-lg transition-all duration-300 mx-auto">
       <div className="relative">
         <img
-          src="/api/placeholder/400/200"
+          src={image}
           alt={title}
-          className="w-full h-48 object-cover rounded-t-lg group-hover:opacity-90 transition-opacity"
+          className="w-full h-48 rounded-t-lg group-hover:opacity-90 transition-opacity"
         />
-        <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full shadow-md">
+        {/* <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full shadow-md">
           <span className="text-sm font-medium text-blue-600">Upcoming</span>
-        </div>
+        </div> */}
       </div>
 
       <CardHeader>
