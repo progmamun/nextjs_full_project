@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import PageHeading from '@/components/common/PageHeading';
 import emailjs from 'emailjs-com';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 
 const serviceId: string = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
 const templateId: string = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
@@ -18,36 +18,25 @@ const ContactPage = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Add your form submission logic here
-      // Extract form data
-    const form = e.target as HTMLFormElement;
-    const formData = new FormData(form);
+        // Extract form data
+        const form = e.target as HTMLFormElement;
+        const formData = new FormData(form);
 
-    const templateParams = {
-        name: formData.get('firstName') + ' ' + formData.get('lastName'),
-        email: formData.get('email'),
-        message: formData.get('message'),
-    };
+        const templateParams = {
+            name: formData.get('firstName') + ' ' + formData.get('lastName'),
+            email: formData.get('email'),
+            message: formData.get('message'),
+        };
 
 
-    emailjs.send(serviceId, templateId, templateParams, userId)
-        .then((response) => {
-            toast(`Success! Your message has been sent. ${response.status}`, {
-                position: "top-right", autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-            })
-            // Reset the form after successful submission
-            form.reset();
-        }, (error) => {
-            toast
-              (`FAILED... ${error}`, {
-                position: "top-right", autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-            })
-        });
+        emailjs.send(serviceId, templateId, templateParams, userId)
+            .then((response) => {
+                toast.success(`Successfully created! ${response.status}`);
+                // Reset the form after successful submission
+                form.reset();
+            }, (error) => {
+                toast.error(`This is an error! ${error}`);
+            });
     };
 
     return (

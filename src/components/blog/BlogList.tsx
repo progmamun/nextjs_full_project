@@ -7,7 +7,6 @@ import { Post } from '@/types';
 import Link from "next/link";
 import { Button } from '../ui/button';
 
-
 interface BlogListProps {
   posts?: Post[];
 }
@@ -48,9 +47,10 @@ const BlogList = ({ posts = [] }: BlogListProps) => {
           </CardHeader>
 
           <CardContent className="flex-grow">
-            <p className="text-gray-600 line-clamp-3 mb-4">
-              {post.content}
-            </p>
+            <p
+              className="text-gray-600 line-clamp-3 mb-4"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
             <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <Badge key={tag} variant="secondary">
@@ -73,9 +73,7 @@ const BlogList = ({ posts = [] }: BlogListProps) => {
             </div>
 
             <Button variant={'outline'}>
-              <Link
-                href={`/blogs/${post.slug}`}
-              >
+              <Link href={`/blogs/${post.slug}`}>
                 Read More
               </Link>
             </Button>
