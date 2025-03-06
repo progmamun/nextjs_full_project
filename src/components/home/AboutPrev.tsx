@@ -24,7 +24,7 @@ export function AboutPreview() {
                         <div className="w-full md:w-2/3 space-y-4">
                             <h2 className="text-2xl font-bold dark:text-white">সংক্ষিপ্ত পরিচিতি</h2>
                             <h2 className="text-2xl font-bold dark:text-white">বাংলাদেশ ইসলামী ছাত্রশিবির</h2>
-                            <p className="text-lg leading-relaxed dark:text-gray-300">
+                            <p className="text-lg leading-relaxed dark:text-gray-300 text-justify">
                                 {previewText}
                             </p>
                             <Link href="/about" passHref>

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import aboutImg from '../../../public/assets/about.jpg'
+import Present from '../../../public/assets/president.jpg'
 import { MoveUpRight } from 'lucide-react'
 
 export function GreatPrev() {
@@ -15,7 +15,7 @@ export function GreatPrev() {
                     <div className="flex flex-col md:flex-row items-center gap-8">
                         <div className="w-full md:w-1/3 relative">
                             <Image
-                                src={aboutImg}
+                                src={Present}
                                 alt="About Us Preview"
                                 width={400}
                                 height={400}
@@ -30,7 +30,7 @@ export function GreatPrev() {
                                 সভাপতির শুভেচ্ছা বক্তব্য
                             </h2>
                             <h2 className="text-2xl font-bold text-blue-400">আরমান</h2>
-                            <p className="text-lg leading-relaxed dark:text-gray-200 bg-gray-800/10 p-4 rounded-lg border-l-4 border-blue-500">
+                            <p className="text-lg leading-relaxed dark:text-gray-200 bg-gray-800/10 p-4 rounded-lg border-l-4 border-blue-500 text-justify">
                                 {previewText}
                             </p>
                             <Link href="/peoples/1" passHref>

@@ -20,7 +20,7 @@ const FeaturedBlogs: React.FC<FeaturedBlogsProps> = ({ posts }) => {
     <section className="py-12 bg-white text-black dark:bg-gray-900 dark:text-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-        <PageHeading title='সর্বশেষ' as='h2'/>
+        <PageHeading title='সর্বশেষ' as='h2' className='pl-5'/>
           <Link href="/blogs"
             className="text-blue-600 hover:text-blue-700">আরো দেখুন →
           </Link>

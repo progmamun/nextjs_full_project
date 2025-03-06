@@ -55,7 +55,7 @@ const Navigation = () => {
     { href: "/about", label: "সংক্ষিপ্ত পরিচিতি" },
     { href: "/peoples", label: "দায়িত্বশীলবৃন্দ" },
     { href: "/advice", label: "পরামর্শ/এহতেসাব" },
-    { href: "/quiz", label: "Quiz" },
+    { href: "/quiz", label: "কুইজ" },
     { href: "https://www.icsbook.info", label: "অনলাইন লাইব্রেরি" }
   ];
 

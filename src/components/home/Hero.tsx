@@ -56,7 +56,7 @@ const Hero = () => {
               fill
               sizes="100vw"
               priority={index === 0}
-              className="object-contain w-full h-full min-h-screen"
+              className="object-contain w-full h-full"
               style={{ objectFit: 'contain' }}
             />
           </div>

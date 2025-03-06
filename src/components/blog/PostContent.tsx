@@ -10,7 +10,7 @@ const PostContent = ({ post }: { post: Post }) => {
   const contentParts = post.content.split('<br/>');
 
   return (
-    <article className="prose prose-lg max-w-none">
+    <article className="prose prose-lg max-w-none text-justify">
       {contentParts.map((part, index) => (
         <React.Fragment key={index}>
           {/* Use dangerouslySetInnerHTML to render HTML content */}

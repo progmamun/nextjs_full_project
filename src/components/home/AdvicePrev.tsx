@@ -35,7 +35,7 @@ export function AdvicePreview() {
                         </div>
 
                         <div className="w-full md:w-2/3 space-y-4">
-                            <p className="text-lg leading-relaxed dark:text-gray-300">
+                            <p className="text-lg leading-relaxed dark:text-gray-300 text-justify">
                                 {previewText}
                             </p>
                             <Link href="/advice" passHref>
