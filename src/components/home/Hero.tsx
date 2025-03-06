@@ -54,7 +54,7 @@ const Hero = () => {
               src={slide.imagePath}
               alt={`Slide ${index + 1}`}
               fill
-              sizes="100vw"
+              sizes="(min-width: 808px) 50vw, 100vw"
               priority={index === 0}
               className="object-contain w-full h-full"
               style={{ objectFit: 'contain' }}
