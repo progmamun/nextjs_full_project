@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import aboutImg from '../../../public/assets/about.jpg';
+import aboutImg from '../../../../public/assets/about.jpg';
 
 export default function AboutPage() {
     return (

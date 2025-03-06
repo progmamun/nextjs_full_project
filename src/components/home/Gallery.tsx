@@ -15,11 +15,11 @@ export default async function Gallery() {
 
   return (
     <div className="bg-background text-foreground dark:bg-gray-900">
-      <div className="container mx-auto p-8 max-w-7xl">
+      <div className="container mx-auto py-12 max-w-7xl">
         <h1 className="text-3xl font-bold mb-6 text-center">ফটো গ্যালারি</h1>
 
         {/* Featured Photos - 2 columns, 4 images */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 px-8">
           {featuredPhotos.map((photo) => (
             <Card key={photo.id} className="overflow-hidden">
               <CardHeader className="p-0">

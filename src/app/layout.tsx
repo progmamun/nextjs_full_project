@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Tiro_Bangla } from 'next/font/google';
 import '@/styles/globals.css';
-import Footer from "@/components/layout/Footer";
+// import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/common/BackToTop";
-import Navigation from "@/components/layout/Navigation";
+// import Navigation from "@/components/layout/Navigation";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from 'react-hot-toast';
 
@@ -28,14 +28,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navigation />
+          {/* <Navigation /> */}
           <main>
             {children}
           </main>
           <Toaster position="top-center"
             reverseOrder={false} />
           <BackToTop />
-          <Footer />
+          {/* <Footer /> */}
         </ThemeProvider>
       </body>
     </html>
