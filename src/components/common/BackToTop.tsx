@@ -30,8 +30,9 @@ const BackToTop = () => {
     <Button
       onClick={scrollToTop}
       className={`fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 ${
-        isVisible ? 'opacity-100' : 'opacity-0'
+        isVisible ? 'opacity-100 animate-pulse' : 'opacity-0'
       }`}
+      style={{ width: '42px', height: '42px' }} // Fixed size
     >
       <ArrowUp size={24} />
     </Button>

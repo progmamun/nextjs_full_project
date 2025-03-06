@@ -27,8 +27,8 @@ export default async function PhotoGallery({
 
   return (
     <div className="min-h-screen bg-background text-foreground dark:bg-gray-900">
-      <div className="container mx-auto py-8 max-w-7xl">
-        <h1 className="text-3xl font-bold mb-6">ফটো গ্যালারি</h1>
+      <div className="container mx-auto p-8 max-w-7xl">
+        <h1 className="text-3xl font-bold mb-6 text-center">ফটো গ্যালারি</h1>
         
         {/* Photo Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

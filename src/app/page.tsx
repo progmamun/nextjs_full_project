@@ -1,4 +1,5 @@
 import { AboutPreview } from '@/components/home/AboutPrev';
+import { AdvicePreview } from '@/components/home/AdvicePrev';
 import ButtonGrid from '@/components/home/ButtonGrid';
 import FeaturedBlogs from '@/components/home/FeaturedBlogs';
 // import FeaturedBooks from '@/components/home/FeaturedBook';
@@ -31,6 +32,7 @@ export default function HomePage() {
       <UpcomingEventsPage events={events} />
       {/* <PhotoGallery photos={photos} /> */}
       <Gallery/>
+      <AdvicePreview/>
       <FeaturedBlogs posts={posts} />
       {/* <FeaturedBooks books={books} /> */}
     </>
