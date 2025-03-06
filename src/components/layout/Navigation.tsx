@@ -5,19 +5,26 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../theme/ThemeToggle";
 import Logo from "../common/Logo";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const Navigation = () => {
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // Track open/close state for mobile nav
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   // Handle initial mounting
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Close mobile nav when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   // Handle scroll events
   useEffect(() => {
@@ -44,10 +51,11 @@ const Navigation = () => {
   }, [lastScrollY, mounted]);
 
   const navLinks = [
-    { href: "/blogs", label: "Blogs" },
-    { href: "/books", label: "Books" },
-    { href: "/contact", label: "Contact" },
-    { href: "/about", label: "About" },
+    { href: "/blogs", label: "ব্লগ" },
+    { href: "/about", label: "সংক্ষিপ্ত পরিচিতি" },
+    { href: "/advice", label: "পরামর্শ/এহতেসাব" },
+    { href: "/quiz", label: "Quiz" },
+    { href: "https://www.icsbook.info", label: "অনলাইন লাইব্রেরি" }
   ];
 
   // Return null or a loading state before mounting to avoid hydration mismatch
@@ -110,33 +118,44 @@ const Navigation = () => {
             </Button>
 
             {/* Animated Navigation */}
-            {isOpen && (
-              <motion.div
-                initial={{ opacity: 0, x: "100%" }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: "100%" }}
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                className="fixed inset-y-0 right-0 bg-white dark:bg-gray-900 w-64 shadow-lg z-50 p-6"
-              >
-                <div className="flex flex-col space-y-4 mt-8">
-                  <button
-                    className="text-gray-700 hover:text-red-500 dark:text-gray-200 self-end"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Close
-                  </button>
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </motion.div>
-            )}
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ type: "tween", duration: 0.3 }}
+                  className="fixed inset-0 bg-white dark:bg-gray-900 z-50 opacity-100"
+                >
+                  <div className="flex flex-col h-full">
+                    {/* Header */}
+                    <div className="flex justify-between items-center p-4 border-b dark:border-gray-700">
+                      <Logo />
+                      <button
+                        className="text-gray-700 hover:text-red-500 dark:text-gray-200"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        x
+                      </button>
+                    </div>
+
+                    {/* Navigation Links */}
+                    <div className="flex flex-col flex-grow p-4 space-y-4">
+                      {navLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className="text-xl text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition-colors"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>

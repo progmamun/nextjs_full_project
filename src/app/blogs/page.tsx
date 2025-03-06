@@ -31,10 +31,10 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
     <div className="dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 py-8">
       <Head>
-        <title>Blogs - Page {currentPage}</title>
+        <title>ব্লগ - Page {currentPage}</title>
         <meta name="description" content={`Browse our blog posts on page ${currentPage}`} />
       </Head>
-      <PageHeading title='Blogs' as='h1' />
+      <PageHeading title='ব্লগ' as='h2' className='text-center' />
       <BlogList posts={posts} />
       <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/blogs" />
       </div>

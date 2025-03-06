@@ -1,109 +1,58 @@
-import React from 'react';
+import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import { Heart, Target } from 'lucide-react';
-import PageHeading from '@/components/common/PageHeading';
+import aboutImg from '../../../public/assets/about.jpg';
 
-const AboutPage = () => {
+export default function AboutPage() {
     return (
-        <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                {/* Hero Section */}
-                <div className="text-center mb-16">
-                <PageHeading title='About Us' as='h1' />
-                    <p className="text-lg max-w-2xl mx-auto">
-                        Making a difference in our community through dedication, compassion, and service.
-                    </p>
-                </div>
-
-                {/* Mission and Vision */}
-                <div className="grid md:grid-cols-2 gap-8 mb-16">
-                    <Card className="p-6">
-                        <div className="flex items-center mb-4">
-                            <Heart className="h-8 w-8 text-blue-600 mr-3" />
-                            <h2 className="text-2xl font-bold">Our Mission</h2>
+        <div className="container mx-auto px-4 py-8 dark:bg-gray-900 dark:text-white">
+            <Card className="max-w-4xl mx-auto dark:bg-gray-800 dark:border-gray-700">
+                <h1 className="text-3xl font-bold dark:text-white p-8 text-center">শিবির পরিচিতি</h1>
+                <CardContent className="p-6 space-y-6">
+                    <div className="flex flex-col items-center gap-8">
+                        <div className="w-full">
+                            <Image
+                                src={aboutImg}
+                                alt="About Us"
+                                width={800}
+                                height={450}
+                                className="rounded-lg shadow-lg object-cover w-full h-auto"
+                            />
                         </div>
-                        <CardContent className="p-0">
-                            <p className="">
-                                To empower and strengthen our community by providing essential resources,
-                                education, and support to those in need, while fostering sustainable
-                                development and positive social change.
-                            </p>
-                        </CardContent>
-                    </Card>
+                        <div className="w-full space-y-4">
+                            <p className="text-lg leading-relaxed dark:text-gray-300">
+                                <strong>মানুষের পরিচয়</strong> <br />
+                                আমরা মানুষ, আশরাফুল মাখলুকাত তথা সৃষ্টির সেরা জীব। মহান আল্লাহ অসংখ্য ছোট-বড় সৃষ্টির মধ্যে মানুষকে সর্বশ্রেষ্ঠ মর্যাদা দিয়ে সৃষ্টি করেছেন। সব সৃষ্টিকেই তিনি একটি নিয়মের অধীনস্থ করে দিয়েছেন। কিন্তু মানুষকে তিনি ইচ্ছার স্বাধীনতা দিয়েছেন। মানুষ যা চায় তাই করতে পারে। এ স্বাধীনতা দেয়ার সাথে সাথে তিনি মানুষকে করেছেন তাঁর খলিফা বা প্রতিনিধি। মানুষ সৃষ্টির আগে তিনি ফেরেশতাদের ডেকে বলেন, &ldquo;আমি পৃথিবীতে আমার খলিফা বা প্রতিনিধি প্রেরণ করব।&rdquo; (সূরা আল বাকারা-৩০) খলিফার কাজ হচ্ছে মনিবের প্রদত্ত দায়িত্ব পালন করা এবং পরে প্রতিনিধি হিসেবে তাঁরই কাছে জবাবদিহি করা।
+                                <br /> <br />
 
-                    <Card className="p-6">
-                        <div className="flex items-center mb-4">
-                            <Target className="h-8 w-8 text-blue-600 mr-3" />
-                            <h2 className="text-2xl font-bold">Our Vision</h2>
+                                <strong>জীবন বিধান ইসলাম</strong> <br />
+                                আল্লাহ মানুষকে দুনিয়ায় পাঠালেন। সাথে দিলেন তাঁর পক্ষ থেকে হেদায়াত। মানুষ যখনই তাঁর দেয়া হেদায়াত ভুলে পথভ্রষ্ট হয়েছে তখনই আল্লাহ পাঠিয়েছেন নবী বা রাসূল। সর্বশেষ নবী হযরত মুহাম্মাদ (সা); তিনি খাতামুন্নাবিয়্যিন, সাইয়্যেদুল মুরসালিন। তাঁর পরে আর কোন নবী আসবে না। তিনি মানুষের কাছে নিয়ে এসেছেন হেদায়াত গ্রন্থ আল-কুরআন। আল্লাহর মনোনীত একমাত্র জীবনব্যবস্থা ইসলামকে তাঁর মাধ্যমে পরিপূর্ণতা দান করা হয়েছে। আল্লাহ বলেন, &ldquo;আজ আমি তোমাদের জন্য তোমাদের দ্বীনকে পূর্ণাঙ্গ করে দিলাম এবং আমার নেয়ামত পূর্ণ করলাম।&rdquo; (সূরা আল মায়েদা-৩)
+                                <br /> <br />
+
+                                <strong>মুসলমানের পরিচয়</strong> <br />
+                                ইসলাম অর্থ আত্মসমর্পণ করা। তাই মানুষের মধ্যে যারা ইসলাম কবুল করে বা আল্লাহর কাছে সম্পূর্ণরূপে আত্মসমর্পণ করে তাদের বলা হয় &lsquo;মুসলিম&rsquo;। কেবল মুসলমানের ঘরে জন্ম নিলেই কেউ মুসলমান হয় না, যতক্ষণ না সে ঈমান আনে ও ইসলামের বিধি-বিধান মেনে চলে। আবার কাফের মুশরিকদের ঘরে জন্ম নিয়েও কেউ যদি ঈমান আনে এবং ইসলামের বিধি-বিধান মেনে চলে তবে সেও মুসলিম হিসেবে গণ্য হয়। মানুষের মধ্যে মুসলিমরা সর্বশ্রেষ্ঠ জাতি। কুরআনের ভাষায়, &ldquo;তোমরাই হলে সর্বোত্তম জাতি, মানবজাতির কল্যাণের জন্যই তোমাদের সৃষ্টি করা হয়েছে। তোমরা সৎকাজের নির্দেশ দান করবে ও অন্যায় কাজে বাধা দেবে এবং আল্লাহর প্রতি ঈমান আনবে।&rdquo; (সূরা আলে ইমরান-১১০) অন্য স্থানে বলা হয়েছে, &ldquo;তোমাদেরকে মধ্যমপন্থি জাতি হিসেবে সৃষ্টি করা হয়েছে, যেন তোমরা মানুষের জন্য সত্যের সাক্ষ্য হতে পারো।&rdquo; (সূরা আল বাকারা-১৪৩)
+                                <br /><br />
+
+                                <strong>কিন্তু</strong> <br />
+                                আজ মানুষ ভুলে গেছে তার পরিচয়। মুসলমান বিস্মৃত হয়েছে তার দায়িত্ব ও কর্তব্য। ফলে জলে-স্থলে সর্বত্র চলছে অনাচার, অবিচার ও অশান্তির প্রবলস্রোত। মানুষে মানুষে চলছে হানাহানি, কাটাকাটি ও হিংসা-বিদ্বেষ। অসংখ্য বনি আদম অন্ন, বস্ত্র, বাসস্থান ও চিকিৎসার অভাবে ধুঁকে ধুঁকে মরছে। মানবরচিত বিভিন্ন মতবাদ যেমন সমাজতন্ত্র, বস্তুবাদ, সংকীর্ণ জাতীয়তাবাদ, নাস্তিক্যবাদ ও ধর্মনিরপেক্ষতাবাদের ধ্বজাধারীদের অসারতা এবং বিশ্বশান্তি প্রতিষ্ঠায় তাদের চরম ব্যর্থতা সকলের সামনে আজ দিবালোকের মতো ফুটে উঠেছে। পুঁজিবাদী অর্থনৈতিক ব্যবস্থার কারণে শোষণ ও বৈষম্য প্রকট আকার ধারণ করেছে। রাষ্ট্রসমূহের মধ্যে চলছে সভ্যতা বিধ্বংসী মারণাস্ত্রের প্রতিযোগিতা। যাদের মুখে শোনা যায় শান্তি ও মানবাধিকার রক্ষার অমিয় বাণী তারাই দেশে দেশে চালাচ্ছে আগ্রাসন এবং ধ্বংসযজ্ঞ। নির্যাতিত ও নিপীড়িত অসহায় মানুষ আল্লাহর নিকট ফরিয়াদ করছে মুক্তির জন্য। মুসলমানদের অবস্থাতো আরো করুণ; ফিলিস্তিন, কাশ্মির, মিয়ানমার, আফগানিস্তান, ইরাক, সিরিয়া, লিবিয়াসহ বিশ্বের বিভিন্ন স্থানে মুসলমানদের রক্ত নিয়ে হোলি খেলছে ইসলাম বিদ্বেষী শক্তি। দিকে দিকে মুসলমানদের উপর চলছে ইসলাম বিরোধী শক্তির নিষ্ঠুর নিধন অভিযান। এ ব্যাপারে মুসলমানদের কোন ঐক্যবদ্ধ ভূমিকা নেই, নেই কোন কার্যকর পদক্ষেপ। তাই মুসলমানদের বিরুদ্ধে দিন-দিন ষড়যন্ত্র তীব্র থেকে তীব্রতর হচ্ছে। যদিও দেশে দেশে ইসলামী পুনর্জাগরণ আন্দোলন আশার নবদিগন্ত উন্মোচন করছে।
+                                <br /> <br />
+
+                                <strong>একদিন</strong> <br />
+                                সব মানুষকেই মৃত্যুর স্বাদ গ্রহণ করতে হবে। ফিরে যেতে হবে মহান আল্লাহর কাছে। কিয়ামতের প্রবল প্রলয়ে সমস্ত কিছু ধ্বংসের পর মানুষের ভাল-মন্দের বিচারের সময় এসে যাবে। সেদিন অবশ্যই সকলকে দুনিয়ায় থাকা অবস্থায় তার ভূমিকা ও কাজ সম্পর্কে জবাবদিহি করতে হবে। সেদিন যাদের ভাল কাজের পরিমাণ বেশি হবে তারাই মুক্তি পাবে, পুরস্কার হিসেবে পাবে চির শান্তির জান্নাত। আর যাদের মন্দ কাজের পাল্লা ভারী হবে, তারা পাবে অবর্ণনীয় আজাবে ভরপুর চির দুঃখের জাহান্নাম। আল্লাহ তায়ালা বলেন, &ldquo;তারপর যার (ভালো কাজের) পাল্লা ভারী হবে, সে মনের মতো সুখী জীবন লাভ করবে। আর যার (ভালো কাজের) পাল্লা হালকা হবে, তার আবাস হবে গভীর খাদ। আর তুমি কি জানো সেটি কি? (সেটি) জ্বলন্ত আগুন।&rdquo; সূরা আল কারিয়া (৬-১১)
+                                <br /><br />
+
+                                <strong>তাই</strong> <br />
+                                জাহান্নামের কঠিন আজাব থেকে মুক্তি এবং চিরস্থায়ী জান্নাত লাভের পথনির্দেশনা আল্লাহ নিজেই দিয়েছেন। তাঁর কালামের ভাষায়, &ldquo;তোমরা আল্লাহর রাস্তায় জান ও মাল দিয়ে সংগ্রাম কর। এটিই হবে তোমাদের জন্য কল্যাণকার, যদি তোমরা বুঝ। তোমাদের গুনাহ ক্ষমা করা হবে, আর তোমাদেরকে জান্নাতে প্রবেশ করানো হবে; যার তলদেশে আছে ঝর্ণাধারা।&rdquo; (সূরা আস সফঃ ১১-১২)
+                                <br /><br />
+
+                                <strong>সুতরাং</strong> <br />
+                                আজকের এই অবস্থায় আমাদের উচিত ইসলাম সম্পর্কে জানা, কুরআন-হাদিস পড়া, মানুষের মুক্তির জন্য আল্লাহর পথে প্রাণান্তকর চেষ্টা চালানো এবং সৎ কাজের আদেশ দেয়া ও অসৎ কাজ হতে বিরত রাখা। কিন্তু এ কাজটি একা একা করা যায় না। এজন্য প্রয়োজন সংঘবদ্ধ প্রচেষ্টা। আল্লাহ বলেন, &ldquo;তোমরা সকলে আল্লাহর রজ্জুকে সুদৃঢ়ভাবে ধারণ কর: পরস্পর বিচ্ছিন্ন হয়ো না।&rdquo; (সূরা আলে ইমরান-১০৩) হযরত উমর (রা.) তাই বলেছেন, &ldquo;সংগঠন ছাড়া ইসলাম হয় না।&rdquo;
+                                <br />
+                                আমাদের দেশের অবস্থা বড়ই নাজুক। দেশের উল্লেখযোগ্য সংখ্যক মানুষ এখনও দারিদ্র্য সীমার নিচে বসবাস করছে। মানুষের জীবনে নেই কোন নিরাপত্তা, নেই সুখ, নেই শান্তি, নেই কোন আদর্শের ছবি। আমাদের শিশু কিশোররা গড়ে উঠছে সাংস্কৃতিক আগ্রাসন ও অনৈতিকতার মধ্য দিয়ে। দুর্নীতি, দুঃশাসন ও মাদকের কালো থাবায় জাতি আজ জর্জরিত। সেক্যুলার ও নৈতিকতা বিবর্জিত শিক্ষাব্যবস্থা জাতিকে নিয়ে যাচ্ছে এক অনিশ্চয়তার দিকে। এ অবস্থা চলতে দিলে জাতির ভবিষ্যৎ গাঢ় অন্ধকারময়। এর হাত থেকে মুক্তি পাওয়ার জন্য প্রয়োজন একদল সচেতন লোকের। তাই মানুষকে আল্লাহর পথে ডাকার জন্য, দেশের তরুণ ছাত্রসমাজকে সৎ, দক্ষ, দেশপ্রেমিক ও আদর্শ চরিত্রবানরূপে গড়ে তোলার মধ্য দিয়ে ইসলামী সমাজ বিনির্মাণের মহান লক্ষ্যকে সামনে রেখে প্রতিষ্ঠিত হয়েছে তরুণ ছাত্রদের সংগঠন- বাংলাদেশ ইসলামী ছাত্রশিবির।
+                            </p>
                         </div>
-                        <CardContent className="p-0">
-                            <p className="">
-                                A world where every individual has access to opportunities for growth,
-                                where communities thrive through mutual support, and where positive
-                                change creates lasting impact.
-                            </p>
-                        </CardContent>
-                    </Card>
-                </div>
-
-                {/* Team Section */}
-                <div className="mb-16">
-                    <h2 className="text-3xl font-bold text-center mb-8">Our Team</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                name: "Jane Smith",
-                                role: "Executive Director",
-                                image: "/api/placeholder/150/150",
-                                bio: "20+ years of nonprofit leadership experience"
-                            },
-                            {
-                                name: "John Davis",
-                                role: "Program Manager",
-                                image: "/api/placeholder/150/150",
-                                bio: "Dedicated to community development"
-                            },
-                            {
-                                name: "Sarah Johnson",
-                                role: "Volunteer Coordinator",
-                                image: "/api/placeholder/150/150",
-                                bio: "Passionate about connecting people"
-                            }
-                        ].map((member) => (
-                            <Card key={member.name} className="text-center p-6">
-                                <img
-                                    src={member.image}
-                                    alt={member.name}
-                                    className="w-32 h-32 rounded-full mx-auto mb-4"
-                                />
-                                <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                                <p className="text-blue-600 mb-2">{member.role}</p>
-                                <p className="">{member.bio}</p>
-                            </Card>
-                        ))}
                     </div>
-                </div>
-
-                {/* Impact Section */}
-                <div className="rounded-lg shadow-lg p-8">
-                    <h2 className="text-3xl font-bold text-center mb-8">Our Impact</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            { number: "5,000+", label: "People Helped" },
-                            { number: "100+", label: "Active Volunteers" },
-                            { number: "50+", label: "Community Programs" }
-
-                        ].map((stat) => (
-                            <div key={stat.label} className="text-center">
-                                <p className="text-4xl font-bold text-blue-600 mb-2">{stat.number}</p>
-                                <p className="">{stat.label}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+                </CardContent>
+            </Card>
         </div>
     );
-};
-
-export default AboutPage;
+}

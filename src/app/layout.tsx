@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bn" suppressHydrationWarning>
+    <html lang="bn" suppressHydrationWarning className="dark">
       <body className={tiroBangla.className + "min-h-screen bg-background text-foreground"}>
         <ThemeProvider
           attribute="class"
@@ -30,7 +30,8 @@ export default function RootLayout({
         >
           <Navigation />
           {children}
-          <Toaster />
+          <Toaster position="top-center"
+            reverseOrder={false} />
           <BackToTop />
           <Footer />
         </ThemeProvider>
