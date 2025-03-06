@@ -7,8 +7,6 @@ import { GreatPrev } from '@/components/home/GreatPrev';
 import Hero from '@/components/home/Hero';
 import OurMission from '@/components/home/OurMission';
 import UpcomingEventsPage from '@/components/home/UpcomingEvents';
-import Footer from '@/components/layout/Footer';
-import Navigation from '@/components/layout/Navigation';
 import { Event,  Post } from '@/types';
 import { getAllBlogs } from '@/utils/getAllBlogs';
 import { getAllEvents } from '@/utils/getAllEvents';
@@ -19,7 +17,6 @@ const posts: Post[] = await getAllBlogs();
 export default function HomePage() {
   return (
     <>
-    <Navigation/>
       <Hero />
       <ButtonGrid/>
       <AboutPreview/>
@@ -29,7 +26,6 @@ export default function HomePage() {
       <Gallery/>
       <AdvicePreview/>
       <FeaturedBlogs posts={posts} />
-      <Footer/>
     </>
   );
 }
