@@ -41,6 +41,17 @@ export interface Photo {
   image: string;
 }
 
+export interface PeoplePhoto {
+  id: string;
+  name: string;
+  designation: string;
+  session: string;
+  dept: string;
+  image: string;
+  hall?: string;
+  quotes?: string;
+}
+
 export interface Quiz {
   id: string;
   title: string;

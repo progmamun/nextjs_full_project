@@ -1,4 +1,3 @@
-// BlogDetailsPage.tsx - Server Component
 import { notFound } from 'next/navigation';
 import { getAllBlogs } from '@/utils/getAllBlogs';
 import InfiniteScrollBlog from '@/components/blog/InfiniteScrollBlog';
@@ -12,7 +11,7 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
-   const { slug } = await params; // Await the resolved params object
+  const { slug } = await params; // Await the resolved params object
   const blogs = await getAllBlogs();
   const post = blogs.find((p: Post) => p.slug === slug);
 

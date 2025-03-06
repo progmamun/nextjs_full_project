@@ -1,4 +1,3 @@
-// app/gallery/page.tsx
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
@@ -27,7 +26,7 @@ export default async function PhotoGallery({
   const currentPhotos = sortedPhotos.slice(startIndex, endIndex);
 
   return (
-    <div className="min-h-screen bg-background text-foreground dark:bg-gray-900 ">
+    <div className="min-h-screen bg-background text-foreground dark:bg-gray-900">
       <div className="container mx-auto py-8 max-w-7xl">
         <h1 className="text-3xl font-bold mb-6">ফটো গ্যালারি</h1>
         

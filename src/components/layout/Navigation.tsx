@@ -53,6 +53,7 @@ const Navigation = () => {
   const navLinks = [
     { href: "/blogs", label: "ব্লগ" },
     { href: "/about", label: "সংক্ষিপ্ত পরিচিতি" },
+    { href: "/peoples", label: "দায়িত্বশীলবৃন্দ" },
     { href: "/advice", label: "পরামর্শ/এহতেসাব" },
     { href: "/quiz", label: "Quiz" },
     { href: "https://www.icsbook.info", label: "অনলাইন লাইব্রেরি" }

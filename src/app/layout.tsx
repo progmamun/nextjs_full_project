@@ -29,7 +29,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navigation />
-          {children}
+          <main>
+            {children}
+          </main>
           <Toaster position="top-center"
             reverseOrder={false} />
           <BackToTop />

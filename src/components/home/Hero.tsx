@@ -45,7 +45,7 @@ const Hero = () => {
 
   return (
     <section className="relative bg-white text-black dark:bg-gray-900 dark:text-white w-full">
-      <div className="text-white py-20 relative overflow-hidden h-screen w-full">
+      <div className="text-white relative overflow-hidden h-screen w-full">
         <div className="px-4 text-center relative h-full w-full">
           {/* Slides */}
           <div className="h-full relative w-full">
