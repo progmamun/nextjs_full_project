@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import PageHeading from '@/components/common/PageHeading';
 import emailjs from 'emailjs-com';
 import toast from 'react-hot-toast';
@@ -68,13 +68,13 @@ const ContactPage = () => {
                                         </Link>
                                     </div>
                                 </div>
-                                <div className="flex items-center space-x-4">
+                                {/* <div className="flex items-center space-x-4">
                                     <Phone className="h-6 w-6 text-blue-600" />
                                     <div>
                                         <h3 className="font-medium">মোবাইল</h3>
                                         <p className="text-gray-600">(555) 123-4567</p>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="flex items-center space-x-4">
                                     <MapPin className="h-6 w-6 text-blue-600" />
                                     <div>
