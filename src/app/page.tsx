@@ -4,6 +4,7 @@ import ButtonGrid from '@/components/home/ButtonGrid';
 import FeaturedBlogs from '@/components/home/FeaturedBlogs';
 // import FeaturedBooks from '@/components/home/FeaturedBook';
 import Gallery from '@/components/home/Gallery';
+import { GreatPrev } from '@/components/home/GreatPrev';
 import Hero from '@/components/home/Hero';
 import OurMission from '@/components/home/OurMission';
 // import PhotoGallery from '@/components/home/PhotoGallery';
@@ -29,6 +30,7 @@ export default function HomePage() {
       <ButtonGrid/>
       <AboutPreview/>
       <OurMission/>
+      <GreatPrev/>
       <UpcomingEventsPage events={events} />
       {/* <PhotoGallery photos={photos} /> */}
       <Gallery/>

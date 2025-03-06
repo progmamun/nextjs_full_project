@@ -28,7 +28,7 @@ export default function OurMission() {
         {/* First Card */}
         <Card className="dark:bg-gray-800 dark:border-gray-700 shadow-lg">
           <CardContent className="p-4 md:p-6 space-y-6">
-            <div className="space-y-4">
+            <div className="space-y-4 p-8">
               <h2 className="text-2xl md:text-3xl font-bold dark:text-white">
                 আমাদের লক্ষ্য ও উদ্দেশ্য
               </h2>
