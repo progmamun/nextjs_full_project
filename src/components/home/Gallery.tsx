@@ -41,7 +41,7 @@ export default async function Gallery() {
 
         {/* See More Button */}
         <div className="text-center">
-          <Link href="/gallery" className="dark:bg-blue-600 dark:hover:bg-blue-700">
+          <Link href="/gallery" className="dark:bg-blue-600 dark:hover:bg-blue-700 p-3">
             <Button size="lg">আরো ছবি দেখুন →</Button>
           </Link>
         </div>

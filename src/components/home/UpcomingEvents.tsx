@@ -90,9 +90,9 @@ const UpcomingEventsPage: React.FC<UpcomingEventsPageProps> = ({ events }) => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center mb-8 sm:mb-12">
           <PageHeading
-            title="Upcoming Events"
+            title="আসন্ন ইভেন্ট"
             as="h2"
-            description="Join us at our upcoming events and be part of our community journey"
+            description="আমাদের আসন্ন ইভেন্টগুলিতে আমাদের সাথে যোগ দিন এবং আমাদের সংগঠনের যাত্রার অংশ হোন"
           />
         </div>
 
@@ -100,9 +100,8 @@ const UpcomingEventsPage: React.FC<UpcomingEventsPageProps> = ({ events }) => {
           <div className={`
             grid gap-6 
             grid-cols-1 
-            sm:grid-cols-2 
-            lg:grid-cols-3 
-            ${events.length === 2 ? 'max-w-4xl mx-auto' : ''}
+            sm:grid-cols-1 
+            ${events.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-1'}
           `}>
             {events.map((event) => (
               <EventCard key={event.id} {...event} />
