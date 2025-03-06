@@ -14,30 +14,15 @@ export default function SupporterPage() {
             </p>
           </div>
 
-          <Card className="w-full max-w-4xl">
-            <CardContent className="p-0 sm:p-6">
-              <div className="relative w-full overflow-hidden">
-                <div className="pb-0" style={{ 
-                  position: 'relative', 
-                  paddingTop: '150%', /* This controls the height-to-width ratio */
-                  width: '100%'
-                }}>
-                  <iframe
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSe1Ev2JhPbcQ1m8Fn6iFdIZtsNOuQq-WgTzihyYS36hvDks_g/viewform?embedded=true"
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      border: 0
-                    }}
-                    title="Support Form"
-                  >
-                    Loading Google Form...
-                  </iframe>
-                </div>
-              </div>
+          <Card className="w-full md:max-w-4xl">
+            <CardContent className="p-0">
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSe1Ev2JhPbcQ1m8Fn6iFdIZtsNOuQq-WgTzihyYS36hvDks_g/viewform?embedded=true"
+                className='w-full md:h-[2450px] h-[2805px]'
+                title="Support Form"
+              >
+                Loading Google Form...
+              </iframe>
             </CardContent>
           </Card>
         </div>
