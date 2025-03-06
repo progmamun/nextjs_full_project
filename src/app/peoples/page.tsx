@@ -29,7 +29,7 @@ export default async function PeoplePage() {
                                 <CardContent>
                                     <CardTitle>{person.name}</CardTitle>
                                     <Separator/>
-                                    <CardDescription className="text-blue-500">{person.designation}</CardDescription>
+                                    <CardDescription className="text-sky-500">{person.designation}</CardDescription>
                                 </CardContent>
                             </Card>
                         </Link>

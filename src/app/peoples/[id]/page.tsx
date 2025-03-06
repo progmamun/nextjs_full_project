@@ -35,7 +35,7 @@ export default async function PersonPage({ params }: { params: Promise<{ id: str
         </div>
         <div className="space-y-4">
           <p className="font-bold text-2xl">{person.name}</p>
-          <p className="text-blue-500 text-xl">{person.designation}</p>
+          <p className="text-sky-500 text-xl">{person.designation}</p>
           <p className="text-lg"><strong>ডিপার্টমেন্ট:</strong> {person.dept}</p>
           {person.hall && <p className="text-lg"><strong>Hall:</strong> {person.hall}</p>}
           <p className="text-lg"><strong>সেশন:</strong> {person.session}</p>
