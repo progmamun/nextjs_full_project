@@ -30,16 +30,17 @@ async function fetchPosts(filters?: BlogFilters): Promise<FetchResponse> {
     limit: (filters?.limit || 5).toString(),
     offset: (filters?.offset || 0).toString(),
   });
-  console.log(`Fetching posts with params: ${params.toString()}`);
+  // console.log(`Fetching posts with params: ${params.toString()}`);
   const response = await fetch(`/api/posts?${params.toString()}`, {
     cache: 'no-store',
   });
   if (!response.ok) throw new Error(`Failed to fetch posts: ${response.statusText}`);
   const data: FetchResponse = await response.json();
-  console.log(`Fetched ${data.posts.length} posts, Total: ${data.total}`);
-  data.posts.forEach((post, index) => 
-    console.log(`Post ${index + (filters?.offset || 0) + 1}: "${post.title}", Published: ${post.publishedAt}, ID: ${post._id}`)
-  );
+  
+  // console.log(`Fetched ${data.posts.length} posts, Total: ${data.total}`);
+  // data.posts.forEach((post, index) => 
+  //   console.log(`Post ${index + (filters?.offset || 0) + 1}: "${post.title}", Published: ${post.publishedAt}, ID: ${post._id}`)
+  // );
   return data;
 }
 
@@ -105,8 +106,8 @@ export default function InfiniteScrollBlog({ initialPost }: InfiniteScrollBlogPr
       ]);
 
       setHasMore(updatedPosts.length < total);
-      console.log(`Offset: ${offset}, Limit: ${POSTS_PER_FETCH}, Fetched: ${newPosts.length}, Total: ${total}, HasMore: ${updatedPosts.length < total}`);
-      console.log('Current posts array:', updatedPosts.map(p => ({ title: p.title, publishedAt: p.publishedAt, _id: p._id })));
+      // console.log(`Offset: ${offset}, Limit: ${POSTS_PER_FETCH}, Fetched: ${newPosts.length}, Total: ${total}, HasMore: ${updatedPosts.length < total}`);
+      // console.log('Current posts array:', updatedPosts.map(p => ({ title: p.title, publishedAt: p.publishedAt, _id: p._id })));
     } catch (error) {
       console.error('Error fetching posts:', error);
       setHasMore(false);
@@ -124,7 +125,7 @@ export default function InfiniteScrollBlog({ initialPost }: InfiniteScrollBlogPr
     observerRef.current = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          console.log('Loader intersected, triggering loadNextPosts');
+          // console.log('Loader intersected, triggering loadNextPosts');
           loadNextPosts();
         }
       },
@@ -148,7 +149,7 @@ export default function InfiniteScrollBlog({ initialPost }: InfiniteScrollBlogPr
     });
   }, [currentPostIndex, posts]);
 
-  const debouncedScroll = useCallback(debounce(handleScroll, 100), [handleScroll]);
+  const debouncedScroll = useCallback(() => debounce(handleScroll, 100)(), [handleScroll]);
 
   useEffect(() => {
     window.addEventListener('scroll', debouncedScroll);

@@ -36,6 +36,6 @@ export async function GET(request: Request) {
     sortedPosts = posts.sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime());
   }
 
-  console.log(`API fetched ${sortedPosts.length} posts for offset=${offset}, limit=${limit}, total=${total}`);
+  // console.log(`API fetched ${sortedPosts.length} posts for offset=${offset}, limit=${limit}, total=${total}`);
   return NextResponse.json({ posts: sortedPosts, total });
 }
