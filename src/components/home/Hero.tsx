@@ -41,13 +41,13 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full h-screen bg-white dark:bg-gray-900">
-      <div className="relative w-full h-full overflow-hidden">
+    <section className="relative w-full h-[200px] sm:h-[250px] md:h-[350px] lg:h-[500px] xl:h-[600px] bg-white dark:bg-gray-900 flex flex-col items-center justify-center">
+      <div className="w-full h-full flex overflow-hidden relative">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            className={`flex-shrink-0 w-full h-full transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
           >
             <Image
@@ -61,10 +61,12 @@ const Hero = () => {
             />
           </div>
         ))}
+      </div>
 
+      <div className="flex justify-between w-full px-4 absolute top-1/2 transform -translate-y-1/2">
         <button
           onClick={prevSlide}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-50 hover:bg-opacity-75 text-white rounded-full p-2 md:p-3"
+          className="bg-black bg-opacity-50 hover:bg-opacity-75 text-white rounded-full p-2 md:p-3"
           aria-label="Previous slide"
         >
           <svg
@@ -80,7 +82,7 @@ const Hero = () => {
 
         <button
           onClick={nextSlide}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-50 hover:bg-opacity-75 text-white rounded-full p-2 md:p-3"
+          className="bg-black bg-opacity-50 hover:bg-opacity-75 text-white rounded-full p-2 md:p-3"
           aria-label="Next slide"
         >
           <svg
@@ -93,19 +95,19 @@ const Hero = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
+      </div>
 
-        <div className="absolute bottom-4 left-0 right-0 z-20 flex justify-center space-x-2">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`h-2 w-2 md:h-3 md:w-3 rounded-full ${
-                index === currentSlide ? 'bg-white' : 'bg-white bg-opacity-50'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+      <div className="flex justify-center space-x-2 mt-4">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`h-2 w-2 md:h-3 md:w-3 rounded-full ${
+              index === currentSlide ? 'bg-white' : 'bg-white bg-opacity-50'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </section>
   );
