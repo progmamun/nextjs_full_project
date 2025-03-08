@@ -56,7 +56,7 @@ const Navigation = () => {
     { href: "/peoples", label: "দায়িত্বশীলবৃন্দ" },
     { href: "/advice", label: "পরামর্শ/এহতেসাব" },
     { href: "/quiz", label: "কুইজ" },
-    { href: "https://www.icsbook.info", label: "অনলাইন লাইব্রেরি" }
+    { href: "https://www.icsbook.info", label: "অনলাইন লাইব্রেরি" },
   ];
 
   // Return null or a loading state before mounting to avoid hydration mismatch
@@ -75,92 +75,94 @@ const Navigation = () => {
   }
 
   return (
-    <nav
-      className={`${
-        lastScrollY === 0 ? "relative" : "fixed"
-      } w-full z-50 transition-all duration-300 ${
-        isVisible ? "top-0" : "-top-24"
-      } ${
-        isScrolled
-          ? "bg-white/80 backdrop-blur-md shadow-md dark:bg-gray-900/80"
-          : "bg-white dark:bg-gray-900"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Logo />
-          </div>
+    <>
+      <nav
+        className={`${
+          lastScrollY === 0 ? "relative" : "fixed"
+        } w-full z-50 transition-all duration-300 ${
+          isVisible ? "top-0" : "-top-24"
+        } ${
+          isScrolled
+            ? "bg-white/80 backdrop-blur-md shadow-md dark:bg-gray-900/80"
+            : "bg-white dark:bg-gray-900"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Logo />
+            </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            <ModeToggle />
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center space-x-2 bg-white text-black dark:bg-gray-900 dark:text-white">
-            <ModeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-
-            {/* Animated Navigation */}
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ x: "100%" }}
-                  animate={{ x: 0 }}
-                  exit={{ x: "100%" }}
-                  transition={{ type: "tween", duration: 0.3 }}
-                  className="fixed inset-0 bg-white dark:bg-gray-900 z-50 opacity-100"
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex md:items-center md:space-x-8">
+              <ModeToggle />
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition-colors"
                 >
-                  <div className="flex flex-col h-full">
-                    {/* Header */}
-                    <div className="flex justify-between items-center p-4 border-b dark:border-gray-700">
-                      <Logo />
-                      <button
-                        className="text-gray-700 hover:text-red-500 dark:text-gray-200"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        x
-                      </button>
-                    </div>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
 
-                    {/* Navigation Links */}
-                    <div className="flex flex-col flex-grow p-4 space-y-4">
-                      {navLinks.map((link) => (
-                        <Link
-                          key={link.href}
-                          href={link.href}
-                          className="text-xl text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition-colors"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Mobile Navigation Trigger */}
+            <div className="md:hidden flex items-center space-x-2 bg-white text-black dark:bg-gray-900 dark:text-white">
+              <ModeToggle />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <Menu className="h-6 w-6" />
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Mobile Navigation Menu (Moved outside nav) */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", duration: 0.3 }}
+            className="fixed inset-0 bg-white dark:bg-gray-900 z-50" // Solid background, no transparency
+          >
+            <div className="flex flex-col h-full">
+              {/* Header */}
+              <div className="flex justify-between items-center p-4 border-b dark:border-gray-700">
+                <Logo />
+                <button
+                  className="text-gray-700 hover:text-red-500 dark:text-gray-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  x
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <div className="flex flex-col flex-grow p-4 space-y-4">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-xl text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

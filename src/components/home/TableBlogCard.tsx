@@ -28,12 +28,12 @@ const TableBlogCard = ({ posts = [] }: BlogListProps) => {
         return (
           <Card
             key={post._id}
-            className="bg-slate-900 border border-slate-700 overflow-hidden"
+            className="dark:bg-slate-900 border dark:border-slate-700 overflow-hidden"
           >
             <CardContent className="p-0">
               <div className="flex flex-col sm:flex-row">
                 {/* Left side - Image */}
-                <div className="sm:w-1/3 flex-shrink-0 bg-gray-800">
+                <div className="sm:w-1/3 flex-shrink-0 dark:bg-gray-800">
                   <Image
                     src={urlFor(post.mainImage)}
                     alt={post.mainImage?.alt || post.title}
@@ -46,12 +46,12 @@ const TableBlogCard = ({ posts = [] }: BlogListProps) => {
 
                 {/* Right side - Content */}
                 <div className="p-6 sm:w-2/3">
-                  <h3 className="text-base font-bold text-white mb-2">
+                  <h3 className="text-base font-bold dark:text-white mb-2">
                     {post.title.length > 25 ? post.title.slice(0, 25) + "..." : post.title}
                   </h3>
 
-                  <p className="text-sm font-bold text-slate-300 flex items-center">
-                    <Calendar className="inline mr-2 w-4 h-4 text-gray-400" />
+                  <p className="text-sm font-bold dark:text-slate-300 flex items-center">
+                    <Calendar className="inline mr-2 w-4 h-4 text-sky-400" />
                     {formatDateToBangla(post.publishedAt)}
                   </p>
 
