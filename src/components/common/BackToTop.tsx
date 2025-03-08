@@ -38,18 +38,18 @@ const BackToTop = () => {
         >
           <div className="relative">
             {/* Multiple pulse effect circles */}
-            <div className="absolute inset-0 rounded-full bg-indigo-300 opacity-20 animate-ping"></div>
-            <div className="absolute inset-0 scale-125 rounded-full bg-indigo-400 opacity-15 animate-pulse"></div>
-            <div className="absolute inset-0 scale-150 rounded-full bg-indigo-500 opacity-10 animate-pulse" style={{animationDuration: '3s'}}></div>
-            <div className="absolute inset-0 scale-175 rounded-full bg-indigo-600 opacity-5 animate-pulse" style={{animationDuration: '4s'}}></div>
+            <div className="absolute inset-0 rounded-full bg-blue-300 opacity-20 animate-ping"></div>
+            <div className="absolute inset-0 scale-125 rounded-full bg-blue-400 opacity-15 animate-pulse"></div>
+            <div className="absolute inset-0 scale-150 rounded-full bg-blue-500 opacity-10 animate-pulse" style={{animationDuration: '3s'}}></div>
+            <div className="absolute inset-0 scale-175 rounded-full bg-blue-600 opacity-5 animate-pulse" style={{animationDuration: '4s'}}></div>
             
             {/* Gradient overlay for more depth */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-600 to-blue-400 opacity-20 blur-sm"></div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-600 to-blue-400 opacity-20 blur-sm"></div>
             
             {/* Main button */}
             <Button
               onClick={scrollToTop}
-              className="relative bg-gradient-to-r from-indigo-500 to-blue-500 hover:from-indigo-600 hover:to-blue-600 text-white rounded-full shadow-lg flex items-center justify-center w-10 h-10 group"
+              className="relative bg-gradient-to-r from-blue-500 to-blue-500 hover:from-blue-600 hover:to-blue-600 text-white rounded-full shadow-lg flex items-center justify-center w-10 h-10 group"
               aria-label="Back to top"
             >
               <ArrowUp 
