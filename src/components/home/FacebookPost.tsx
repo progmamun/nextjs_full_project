@@ -2,6 +2,8 @@ import { FacebookPost } from "@/types";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import formatDateToBangla from "@/utils/helpers";
+import Image from "next/image";
+import { MoveUpRight } from "lucide-react";
 
 async function fetchFacebookPosts(): Promise<FacebookPost[]> {
   const pageId = process.env.NEXT_PUBLIC_FB_PAGE_ID;
@@ -63,9 +65,12 @@ export default async function FacebookPostPage() {
                             className="w-full h-auto rounded-md"
                           />
                         ) : firstAttachment.media.image ? (
-                          <img
+                          <Image
                             src={firstAttachment.media.image.src}
                             alt="Post image"
+                            width={0}
+                            height={0}
+                            sizes="100vw"
                             className="w-full h-auto rounded-md object-cover"
                           />
                         ) : null}
@@ -85,9 +90,9 @@ export default async function FacebookPostPage() {
                       href={post.permalink_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:underline"
+                       className="text-blue-400 hover:underline"
                     >
-                      ফেসবুকে দেখুন
+                      ফেসবুকে দেখুন <MoveUpRight className='inline w-4 h-4' />
                     </a>
                   </CardFooter>
                 </Card>

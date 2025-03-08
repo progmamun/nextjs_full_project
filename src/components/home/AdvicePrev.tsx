@@ -4,7 +4,6 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import advice from '../../../public/assets/poramorso.png'
 import verticalLine from '../../../public/assets/advice-icn.png'
-import { MoveUpRight } from 'lucide-react'
 
 export function AdvicePreview() {
     const previewText = `এহতেসাব মানে অনুসন্ধান, সমালোচনা, পরীক্ষা-নিরীক্ষা, যাচাই-বাছাই, মূল্যায়ন, ফলাফল প্রত্যাশা, পুণ্য, নেকি বা সওয়াবের আশা ও আত্মজিজ্ঞাসা ইত্যাদি। মুহাসাবা শব্দটি আরবি হিসাব শব্দ থেকে এসেছে। হিসাব শব্দটি এসেছে হাসব শব্দ থেকে; যার আভিধানিক অর্থ হলো যথেষ্ট, পর্যাপ্ত, যথাযথ ইত্যাদি`;
@@ -40,8 +39,7 @@ export function AdvicePreview() {
                             </p>
                             <Link href="/advice" passHref>
                                 <Button variant="default" className="dark:bg-blue-600 dark:hover:bg-blue-700 mt-4">
-                                    এহতেসাব/পরামর্শ দিন
-                                    <MoveUpRight className='' />
+                                    এহতেসাব/পরামর্শ দিন →
                                 </Button>
                             </Link>
                         </div>

@@ -5,6 +5,7 @@ import { Post } from "@/types/post";
 import { urlFor } from '@/lib/sanity';
 import Link from "next/link";
 import formatDateToBangla from "@/utils/helpers";
+import Image from "next/image";
 
 
 interface BlogListProps {
@@ -33,9 +34,12 @@ const TableBlogCard = ({ posts = [] }: BlogListProps) => {
               <div className="flex flex-col sm:flex-row">
                 {/* Left side - Image */}
                 <div className="sm:w-1/3 flex-shrink-0 bg-gray-800">
-                  <img
+                  <Image
                     src={urlFor(post.mainImage)}
                     alt={post.mainImage?.alt || post.title}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                     className="w-full h-full object-cover"
                   />
                 </div>

@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import aboutImg from '../../../public/assets/about.jpg'
-import { MoveUpRight } from 'lucide-react'
 
 export function AboutPreview() {
     const previewText = `দেশের প্রতিটি জনপদে কাজ করে যাচ্ছে বাংলাদেশ ইসলামী ছাত্রশিবির। শিবির একজন তরুণকে একই সাথে একজন ভাল ছাত্র ও একজন ভাল মুসলমান হিসেবে গড়ে তুলতে চেষ্টা করে। ইসলাম সকল মানুষের কল্যাণের জন্য; তাই ইসলামী ছাত্রশিবির মুসলমান, হিন্দু, বৌদ্ধ ও খ্রিস্টানসহ সবার কাছে ইসলামের সুমহান সৌন্দর্যকে সুন্দরভাবে তুলে ধরার কর্মসূচি নিয়ে এগিয়ে যাচ্ছে। তাই এই সুন্দর কর্মসূচি ও চরিত্রবান কর্মীদের প্রতি দিন দিন জনসমর্থন বাড়ছে। আসুন, আপনিও শিবিরের পতাকাতলে সমবেত হয়ে নিজেকে গড়ে তুলুন সুন্দর ও যোগ্যতম ব্যক্তি হিসেবে। শরিক হউন ইহকাল ও পরকালের মুক্তিকামী মানুষের এই কাফেলায়।`;
@@ -29,8 +28,7 @@ export function AboutPreview() {
                             </p>
                             <Link href="/about" passHref>
                                 <Button variant="default" className="dark:bg-blue-600 dark:hover:bg-blue-700 mt-4">
-                                    বিস্তারিত পড়ুন 
-                                    <MoveUpRight className='' />
+                                    বিস্তারিত পড়ুন →
                                 </Button>
                             </Link>
                         </div>

@@ -7,6 +7,7 @@ import { Button } from '../ui/button';
 import { Post } from '@/types/post';
 import { urlFor } from '@/lib/sanity';
 import formatDateToBangla from '@/utils/helpers';
+import Image from 'next/image';
 
 interface BlogListProps {
   posts?: Post[];
@@ -37,11 +38,14 @@ const BlogList = ({ posts = [] }: BlogListProps) => {
           >
             <div className="relative">
               {post.mainImage ? (
-                <img
-                  src={urlFor(post.mainImage)}
-                  alt={post.mainImage.alt || post.title}
-                  className="w-full h-48 object-cover rounded-t-lg group-hover:opacity-90 transition-opacity"
-                />
+                <Image
+                src={urlFor(post.mainImage)}
+                alt={post.mainImage.alt || post.title}
+                width={0}
+                height={0}
+                sizes="100vw"
+                className="w-full h-48 object-cover rounded-t-lg group-hover:opacity-90 transition-opacity"
+              />
               ) : (
                 <div className="w-full h-48 bg-gray-200 flex items-center justify-center rounded-t-lg">
                   <span className="text-gray-500">No Image</span>
@@ -85,7 +89,7 @@ const BlogList = ({ posts = [] }: BlogListProps) => {
                   {formatDateToBangla(post.publishedAt)}
                 </span>
               </div>
-              <Button variant="outline" className="dark:bg-blue-600 dark:hover:bg-blue-700">
+              <Button variant="default" className="dark:bg-blue-600 dark:hover:bg-blue-700">
                 <Link href={`/blog/${encodedSlug}`}>
                 বিস্তারিত পড়ুন →
                 </Link>

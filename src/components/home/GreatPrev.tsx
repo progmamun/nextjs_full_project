@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Present from '../../../public/assets/president.jpg'
-import { MoveUpRight } from 'lucide-react'
 
 export function GreatPrev() {
     const previewText = `এদেশকে একটি সমৃদ্ধ, স্বনির্ভর দেশ হিসেবে গড়ে তোলার লক্ষ্যে বাংলাদেশ ইসলামী ছাত্রশিবির সৎ, দক্ষ ও দেশপ্রেমিক নেতৃত্ব তৈরির প্রকল্প নিয়ে প্রতিষ্ঠাকালীন সময় থেকেই একাগ্রতার সাথে কাজ করে যাচ্ছে। ১৯৭৭ সালের ৬ ফেব্রুয়ারী ঢাকা বিশ্ববিদ্যালয়ের কেন্দ্রীয় জামে মসজিদ থেকে যাত্রা শুরু করে ইসলামী ছাত্রশিবির। সে লগ্ন থেকে অদ্যাবধি দেশের ক্রান্তিকালীন সময়ে সম্মুখ সারিতে থেকে সংকট উত্তরণে সাহসী ও বুদ্ধিদীপ্ত ভূমিকা রেখেছে এ সংগঠন।`;
@@ -38,8 +37,7 @@ export function GreatPrev() {
                                     variant="default" 
                                     className="dark:bg-gradient-to-r dark:from-blue-600 dark:to-green-600 dark:hover:from-blue-700 dark:hover:to-green-700 mt-4 transform hover:scale-105 transition-transform duration-200"
                                 >
-                                    বিস্তারিত পড়ুন 
-                                    <MoveUpRight className="ml-2" />
+                                    বিস্তারিত পড়ুন →
                                 </Button>
                             </Link>
                         </div>

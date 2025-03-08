@@ -7,6 +7,7 @@ import PostContent from './PostContent';
 import ShareSection from './ShareSection';
 import { Post } from '@/types/post';
 import { urlFor } from '@/lib/sanity';
+import Image from 'next/image';
 
 interface BlogFilters {
   sortOrder?: 'asc' | 'desc';
@@ -18,15 +19,28 @@ interface InfiniteScrollBlogProps {
   initialPost: Post;
 }
 
-async function fetchPosts(filters?: BlogFilters): Promise<Post[]> {
+interface FetchResponse {
+  posts: Post[];
+  total: number;
+}
+
+async function fetchPosts(filters?: BlogFilters): Promise<FetchResponse> {
   const params = new URLSearchParams({
     sortOrder: filters?.sortOrder || 'desc',
     limit: (filters?.limit || 5).toString(),
     offset: (filters?.offset || 0).toString(),
   });
-  const response = await fetch(`/api/posts?${params.toString()}`);
-  if (!response.ok) throw new Error('Failed to fetch posts');
-  return response.json();
+  console.log(`Fetching posts with params: ${params.toString()}`);
+  const response = await fetch(`/api/posts?${params.toString()}`, {
+    cache: 'no-store',
+  });
+  if (!response.ok) throw new Error(`Failed to fetch posts: ${response.statusText}`);
+  const data: FetchResponse = await response.json();
+  console.log(`Fetched ${data.posts.length} posts, Total: ${data.total}`);
+  data.posts.forEach((post, index) => 
+    console.log(`Post ${index + (filters?.offset || 0) + 1}: "${post.title}", Published: ${post.publishedAt}, ID: ${post._id}`)
+  );
+  return data;
 }
 
 export default function InfiniteScrollBlog({ initialPost }: InfiniteScrollBlogProps) {
@@ -35,9 +49,12 @@ export default function InfiniteScrollBlog({ initialPost }: InfiniteScrollBlogPr
   const [currentPostIndex, setCurrentPostIndex] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [totalPosts, setTotalPosts] = useState<number | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loaderRef = useRef<HTMLDivElement>(null);
   const POSTS_PER_FETCH = 5;
+
+  // console.log(`Initial Post: "${initialPost.title}", Published: ${initialPost.publishedAt}, ID: ${initialPost._id}`);
 
   useEffect(() => {
     const currentPost = posts[currentPostIndex];
@@ -56,42 +73,62 @@ export default function InfiniteScrollBlog({ initialPost }: InfiniteScrollBlogPr
   };
 
   const loadNextPosts = useCallback(async () => {
-    if (loading || !hasMore) return;
+    if (loading || !hasMore) {
+      // console.log('Skipping load: loading or no more posts');
+      return;
+    }
 
     setLoading(true);
-    const offset = posts.length;
+    // Offset starts after initialPost, so we fetch remaining posts
+    const offset = posts.length - 1; // Subtract 1 to account for initialPost
     try {
-      const newPosts = await fetchPosts({
+      const { posts: newPosts, total } = await fetchPosts({
         sortOrder: 'desc',
         limit: POSTS_PER_FETCH,
-        offset,
+        offset: offset < 0 ? 0 : offset, // Ensure offset isn’t negative
       });
 
-      if (newPosts.length < POSTS_PER_FETCH) setHasMore(false);
-      setPosts(prev => [
-        ...prev,
-        ...newPosts.filter(np => !prev.some(p => p._id === np._id)),
-      ]);
+      if (totalPosts === null) setTotalPosts(total);
+
+      // Ensure initialPost is preserved and deduplicate new posts
+      const updatedPosts = [
+        initialPost, // Always keep initialPost at the start
+        ...posts.filter(p => p._id !== initialPost._id), // Existing posts minus initialPost
+        ...newPosts.filter(np => np._id !== initialPost._id && !posts.some(p => p._id === np._id)), // New posts, excluding initialPost and duplicates
+      ].sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()); // Re-sort to ensure order
+
+      setPosts(updatedPosts);
       setLoadedPostIds(prev => [
-        ...prev,
-        ...newPosts.map(np => np._id).filter(id => !prev.includes(id)),
+        initialPost._id, // Ensure initialPost ID is first
+        ...prev.filter(id => id !== initialPost._id),
+        ...newPosts.map(np => np._id).filter(id => id !== initialPost._id && !prev.includes(id)),
       ]);
+
+      setHasMore(updatedPosts.length < total);
+      console.log(`Offset: ${offset}, Limit: ${POSTS_PER_FETCH}, Fetched: ${newPosts.length}, Total: ${total}, HasMore: ${updatedPosts.length < total}`);
+      console.log('Current posts array:', updatedPosts.map(p => ({ title: p.title, publishedAt: p.publishedAt, _id: p._id })));
     } catch (error) {
       console.error('Error fetching posts:', error);
       setHasMore(false);
     } finally {
       setLoading(false);
     }
-  }, [loading, hasMore, posts.length]);
+  }, [loading, hasMore, posts, totalPosts, initialPost]);
 
   useEffect(() => {
-    if (!loaderRef.current || !hasMore) return;
+    if (!loaderRef.current || !hasMore) {
+      // console.log('Observer not set: no loader or no more posts');
+      return;
+    }
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) loadNextPosts();
+        if (entries[0].isIntersecting) {
+          console.log('Loader intersected, triggering loadNextPosts');
+          loadNextPosts();
+        }
       },
-      { threshold: 0.1 }
+      { threshold: 0.5 }
     );
 
     observerRef.current.observe(loaderRef.current);
@@ -122,7 +159,10 @@ export default function InfiniteScrollBlog({ initialPost }: InfiniteScrollBlogPr
     <div className="dark:bg-gray-900 min-h-screen">
       {loadedPostIds.map((postId) => {
         const post = posts.find(p => p._id === postId);
-        if (!post) return null;
+        if (!post) {
+          // console.log(`Post with ID ${postId} not found in posts array`);
+          return null;
+        }
 
         return (
           <article
@@ -134,11 +174,14 @@ export default function InfiniteScrollBlog({ initialPost }: InfiniteScrollBlogPr
             {post.mainImage && (
               <Card className="mb-8">
                 <CardContent className="p-0">
-                  <img
+                  <Image
                     src={urlFor(post.mainImage)}
                     alt={post.mainImage.alt || `${post.title} main image`}
+                    width={800}
+                    height={450}
+                    sizes="100vw"
                     className="w-full h-auto rounded-lg object-cover"
-                    loading="lazy"
+                    priority={postId === initialPost._id}
                   />
                 </CardContent>
               </Card>
