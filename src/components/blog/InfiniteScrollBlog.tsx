@@ -1,124 +1,156 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import PostHeader from './PostHeader'; // Adjust the import path as necessary
-import PostContent from './PostContent'; // Adjust the import path as necessary
-import ShareSection from './ShareSection'; // Adjust the import path as necessary
-import { Post } from '@/types';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import PostHeader from './PostHeader';
+import PostContent from './PostContent';
+import ShareSection from './ShareSection';
+import { Post } from '@/types/post';
+import { urlFor } from '@/lib/sanity';
+
+interface BlogFilters {
+  sortOrder?: 'asc' | 'desc';
+  limit?: number;
+  offset?: number;
+}
 
 interface InfiniteScrollBlogProps {
   initialPost: Post;
-  allPosts: Post[];
 }
 
-export default function InfiniteScrollBlog({ initialPost, allPosts }: InfiniteScrollBlogProps) {
-  const uniqueAllPosts = allPosts.filter((post, index, self) =>
-    index === self.findIndex(p => p.slug === post.slug)
-  );
+async function fetchPosts(filters?: BlogFilters): Promise<Post[]> {
+  const params = new URLSearchParams({
+    sortOrder: filters?.sortOrder || 'desc',
+    limit: (filters?.limit || 5).toString(),
+    offset: (filters?.offset || 0).toString(),
+  });
+  const response = await fetch(`/api/posts?${params.toString()}`);
+  if (!response.ok) throw new Error('Failed to fetch posts');
+  return response.json();
+}
 
-  const initialIndex = uniqueAllPosts.findIndex(post => post.slug === initialPost.slug);
-  const [loadedPostIds, setLoadedPostIds] = useState<string[]>([`${initialPost.id}`]);
-  const [currentPostIndex, setCurrentPostIndex] = useState<number>(initialIndex);
+export default function InfiniteScrollBlog({ initialPost }: InfiniteScrollBlogProps) {
+  const [posts, setPosts] = useState<Post[]>([initialPost]);
+  const [loadedPostIds, setLoadedPostIds] = useState<string[]>([initialPost._id]);
+  const [currentPostIndex, setCurrentPostIndex] = useState<number>(0);
   const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const observerRef = useRef<IntersectionObserver | null>(null);
-  const loaderElementRef = useRef<HTMLDivElement>(null);
+  const loaderRef = useRef<HTMLDivElement>(null);
+  const POSTS_PER_FETCH = 5;
 
   useEffect(() => {
-    if (currentPostIndex >= 0 && uniqueAllPosts[currentPostIndex]) {
-      const newUrl = `/blogs/${uniqueAllPosts[currentPostIndex].slug}`;
+    const currentPost = posts[currentPostIndex];
+    if (currentPost) {
+      const newUrl = `/blog/${currentPost.slug.current}`;
       window.history.pushState({}, '', newUrl);
     }
-  }, [currentPostIndex, uniqueAllPosts]);
+  }, [currentPostIndex, posts]);
 
-  useEffect(() => {
-    const hasMorePosts = currentPostIndex < uniqueAllPosts.length - 1;
-    if (!loaderElementRef.current || !hasMorePosts) return;
-
-    observerRef.current = new IntersectionObserver((entries) => {
-      const [entry] = entries;
-      if (entry.isIntersecting && !loading && hasMorePosts) {
-        loadNextPost();
-      }
-    }, { threshold: 0.1 });
-
-    observerRef.current.observe(loaderElementRef.current);
-
+  const debounce = (fn: () => void, delay: number) => {
+    let timeout: NodeJS.Timeout;
     return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
+      clearTimeout(timeout);
+      timeout = setTimeout(fn, delay);
     };
-  }, [currentPostIndex, loading, uniqueAllPosts.length]);
-
-  const loadNextPost = () => {
-    if (currentPostIndex >= uniqueAllPosts.length - 1) return;
-
-    setLoading(true);
-    const nextIndex = currentPostIndex + 1;
-    const nextPost = uniqueAllPosts[nextIndex];
-    const nextPostId = nextPost.id;
-
-    if (!loadedPostIds.includes(nextPostId)) {
-      setTimeout(() => {
-        setLoadedPostIds(prev => [...prev, nextPostId]);
-        setCurrentPostIndex(nextIndex);
-        setLoading(false);
-      }, 300);
-    } else {
-      setLoading(false);
-    }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const postElements = document.querySelectorAll('[data-post-slug]');
+  const loadNextPosts = useCallback(async () => {
+    if (loading || !hasMore) return;
 
-      postElements.forEach((element) => {
-        const rect = element.getBoundingClientRect();
-        if (rect.top <= 200 && rect.bottom >= 200) {
-          const slug = element.getAttribute('data-post-slug');
-          const postIndex = uniqueAllPosts.findIndex(post => post.slug === slug);
-          if (postIndex !== -1 && postIndex !== currentPostIndex) {
-            setCurrentPostIndex(postIndex);
-          }
-        }
+    setLoading(true);
+    const offset = posts.length;
+    try {
+      const newPosts = await fetchPosts({
+        sortOrder: 'desc',
+        limit: POSTS_PER_FETCH,
+        offset,
       });
-    };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [uniqueAllPosts, currentPostIndex]);
+      if (newPosts.length < POSTS_PER_FETCH) setHasMore(false);
+      setPosts(prev => [
+        ...prev,
+        ...newPosts.filter(np => !prev.some(p => p._id === np._id)),
+      ]);
+      setLoadedPostIds(prev => [
+        ...prev,
+        ...newPosts.map(np => np._id).filter(id => !prev.includes(id)),
+      ]);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      setHasMore(false);
+    } finally {
+      setLoading(false);
+    }
+  }, [loading, hasMore, posts.length]);
+
+  useEffect(() => {
+    if (!loaderRef.current || !hasMore) return;
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) loadNextPosts();
+      },
+      { threshold: 0.1 }
+    );
+
+    observerRef.current.observe(loaderRef.current);
+    return () => observerRef.current?.disconnect();
+  }, [loadNextPosts, hasMore]);
+
+  const handleScroll = useCallback(() => {
+    const postElements = document.querySelectorAll('[data-post-slug]');
+    postElements.forEach((element) => {
+      const rect = element.getBoundingClientRect();
+      const slug = element.getAttribute('data-post-slug');
+      const postIndex = posts.findIndex(post => post.slug.current === slug);
+
+      if (rect.top <= 200 && rect.bottom >= 200 && postIndex !== -1 && postIndex !== currentPostIndex) {
+        setCurrentPostIndex(postIndex);
+      }
+    });
+  }, [currentPostIndex, posts]);
+
+  const debouncedScroll = useCallback(debounce(handleScroll, 100), [handleScroll]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', debouncedScroll);
+    return () => window.removeEventListener('scroll', debouncedScroll);
+  }, [debouncedScroll]);
 
   return (
-    <div className="dark:bg-gray-900">
+    <div className="dark:bg-gray-900 min-h-screen">
       {loadedPostIds.map((postId) => {
-        const post = uniqueAllPosts.find(p => p.id === postId);
-
+        const post = posts.find(p => p._id === postId);
         if (!post) return null;
 
         return (
-          <div
-            key={post.id}
-            data-post-slug={post.slug}
+          <article
+            key={post._id}
+            data-post-slug={post.slug.current}
             className="max-w-4xl mx-auto px-4 py-8 border-b border-gray-200 dark:border-gray-800"
           >
             <PostHeader post={post} />
-            <Card className="mb-8">
-              <CardContent className="p-0">
-                <img src={post.imageUrl} alt={`${post.title} featured image`} className="w-full h-auto rounded-lg" />
-              </CardContent>
-            </Card>
+            {post.mainImage && (
+              <Card className="mb-8">
+                <CardContent className="p-0">
+                  <img
+                    src={urlFor(post.mainImage)}
+                    alt={post.mainImage.alt || `${post.title} main image`}
+                    className="w-full h-auto rounded-lg object-cover"
+                    loading="lazy"
+                  />
+                </CardContent>
+              </Card>
+            )}
             <PostContent post={post} />
             <ShareSection post={post} />
-          </div>
+          </article>
         );
       })}
-      <div ref={loaderElementRef} className="py-8 text-center">
-        {loading && <p className="text-gray-500">Loading next article...</p>}
-        {currentPostIndex >= uniqueAllPosts.length - 1 &&
-          <p className="text-gray-500">{"You've read all our articles!"}</p>
-        }
+      <div ref={loaderRef} className="py-8 text-center text-gray-500">
+        {loading && <p>Loading next articles...</p>}
+        {!loading && !hasMore && <p>You have read all our articles!</p>}
       </div>
     </div>
   );

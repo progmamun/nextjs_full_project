@@ -1,5 +1,4 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { PeoplePhoto } from "@/types";
 import { getAllPeoplesPhoto } from "@/utils/getAllPeoplesPhoto";
 import Image from "next/image";
@@ -28,7 +27,6 @@ export default async function PeoplePage() {
                                 </CardHeader>
                                 <CardContent>
                                     <CardTitle className="text-2xl text-center">{person.name}</CardTitle>
-                                    <Separator/>
                                     <CardDescription className="text-sky-500 text-xl text-center">{person.designation}</CardDescription>
                                 </CardContent>
                             </Card>

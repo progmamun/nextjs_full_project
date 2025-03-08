@@ -7,12 +7,15 @@ import { GreatPrev } from '@/components/home/GreatPrev';
 import Hero from '@/components/home/Hero';
 import OurMission from '@/components/home/OurMission';
 import UpcomingEventsPage from '@/components/home/UpcomingEvents';
-import { Event,  Post } from '@/types';
-import { getAllBlogs } from '@/utils/getAllBlogs';
+import { Event} from '@/types';
+import { Post } from '@/types/post';
+import { BlogFilters, getAllBlogs } from '@/utils/getAllBlogs';
 import { getAllEvents } from '@/utils/getAllEvents';
 
 const events: Event[] = await getAllEvents();
-const posts: Post[] = await getAllBlogs();
+
+const filters: BlogFilters = { sortOrder: 'desc', limit: 5 };
+const posts: Post[] = await getAllBlogs(filters);
 
 export default function HomePage() {
   return (

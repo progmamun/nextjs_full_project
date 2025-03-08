@@ -1,19 +1,3 @@
-export interface Post {
-  id: string;
-  title: string;
-  slug: string;
-  content: string;
-  author: {
-    name: string;
-    image: string;
-    role: string;
-  };
-  publishedAt: string;
-  readingTime: string;
-  tags: string[];
-  imageUrl: string;
-}
-
 export interface Event {
   id: string;
   title: string;
@@ -22,17 +6,6 @@ export interface Event {
   description: string;
   image: string;
   link?: string;
-}
-
-export interface Book {
-  id: string;
-  title: string;
-  author: string;
-  genre: string;
-  published_year: number;
-  image: string;
-  link: string;
-  publishedAt: string;
 }
 
 export interface Photo {
@@ -84,4 +57,26 @@ export interface Student {
   dept: 'Bangla' | 'Economics' | 'Management' | 'Sociology' | 'Music';
   session: 'Y2017_18' | 'Y2018_19' | 'Y2019_20' | 'Y2020_21' | 'Y2021_22' | 'Y2022_23' | 'Y2024_25';
   createdAt: Date;
+}
+
+export interface FacebookAttachment {
+  media?: {
+    image?: {
+      height: number;
+      src: string;
+      width: number;
+    };
+    media_type?: string; // "image" or "video"
+    url?: string; // Video URL if media_type is "video"
+  };
+}
+
+export interface FacebookPost {
+  id: string;
+  message?: string;
+  created_time: string;
+  permalink_url: string;
+  attachments?: {
+    data: FacebookAttachment[];
+  };
 }
