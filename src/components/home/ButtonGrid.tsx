@@ -24,7 +24,7 @@ export default function ButtonGrid() {
       </Link>
 
       {/* News Button */}
-      <Link href="/blogs" className="w-full">
+      <Link href="/blog" className="w-full">
         <Button
           size="lg"
           className="w-full h-24 flex flex-col items-center justify-center gap-2 bg-purple-900 text-white hover:bg-purple-800 transition-colors duration-200"
