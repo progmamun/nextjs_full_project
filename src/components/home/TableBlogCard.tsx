@@ -45,18 +45,18 @@ const TableBlogCard = ({ posts = [] }: BlogListProps) => {
                 </div>
 
                 {/* Right side - Content */}
-                <div className="p-6 sm:w-2/3">
-                  <h3 className="text-base font-bold dark:text-white mb-2">
+                <div className="p-6 sm:w-2/3 flex flex-col justify-between space-y-3">
+                  <h3 className="text-base font-bold dark:text-white">
                     {post.title.length > 25 ? post.title.slice(0, 25) + "..." : post.title}
                   </h3>
 
                   <p className="text-sm font-bold dark:text-slate-300 flex items-center">
-                    <Calendar className="inline mr-2 w-4 h-4 text-sky-400" />
+                    <Calendar className="mr-2 w-4 h-4 text-sky-400" />
                     {formatDateToBangla(post.publishedAt)}
                   </p>
 
-                  <Link href={`/blog/${encodedSlug}`} passHref className="text-blue-400 hover:underline">
-                    বিস্তারিত পড়ুন →
+                  <Link href={`/blog/${encodedSlug}`} passHref>
+                    <span className="text-blue-400 hover:underline">বিস্তারিত পড়ুন →</span>
                   </Link>
                 </div>
               </div>
