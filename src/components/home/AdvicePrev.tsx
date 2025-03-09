@@ -2,8 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import advice from '../../../public/assets/poramorso.png'
-import verticalLine from '../../../public/assets/advice-icn.png'
 
 export function AdvicePreview() {
     const previewText = `এহতেসাব মানে অনুসন্ধান, সমালোচনা, পরীক্ষা-নিরীক্ষা, যাচাই-বাছাই, মূল্যায়ন, ফলাফল প্রত্যাশা, পুণ্য, নেকি বা সওয়াবের আশা ও আত্মজিজ্ঞাসা ইত্যাদি। মুহাসাবা শব্দটি আরবি হিসাব শব্দ থেকে এসেছে। হিসাব শব্দটি এসেছে হাসব শব্দ থেকে; যার আভিধানিক অর্থ হলো যথেষ্ট, পর্যাপ্ত, যথাযথ ইত্যাদি`;
@@ -15,7 +13,7 @@ export function AdvicePreview() {
                         <div className="w-full md:w-1/3 flex flex-col items-center">
                             <h2 className="text-2xl font-bold dark:text-white text-center">এহতেসাব বা পরামর্শ</h2>
                             <Image
-                                src={advice}
+                                src='/assets/poramorso.png'
                                 alt="About Us Preview"
                                 width={400}
                                 height={400}
@@ -25,7 +23,7 @@ export function AdvicePreview() {
 
                         <div className="hidden md:block">
                             <Image
-                                src={verticalLine}
+                                src='/assets/advice-icn.png'
                                 alt="Vertical Line"
                                 width={10} 
                                 height={300} 

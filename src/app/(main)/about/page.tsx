@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import aboutImg from '../../../../public/assets/about.jpg';
+// import aboutImg from '../../../../public/assets/about.jpg';
 
 export default function AboutPage() {
     return (
@@ -11,7 +11,7 @@ export default function AboutPage() {
                     <div className="flex flex-col items-center gap-8">
                         <div className="w-full">
                             <Image
-                                src={aboutImg}
+                                src='/assets/about.jpg'
                                 alt="About Us"
                                 width={800}
                                 height={450}
