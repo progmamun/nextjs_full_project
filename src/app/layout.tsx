@@ -1,39 +1,65 @@
 import type { Metadata } from "next";
-import { Tiro_Bangla } from 'next/font/google';
 import '@/styles/globals.css';
 import BackToTop from "@/components/common/BackToTop";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from 'react-hot-toast';
+import defaultMetadata from './metadata';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { inter, tiroBangla } from '@/lib/fonts';
 
-const tiroBangla = Tiro_Bangla({ subsets: ['bengali'], weight: '400' });
-
-export const metadata: Metadata = {
-  title: "রবিবা, শিবির",
-  description: "বাংলাদেশ ইসলামী ছাত্র শিবির, রবিবা শাখা",
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="bn" suppressHydrationWarning className="dark">
-      <body className={tiroBangla.className + "min-h-screen bg-background text-foreground"}>
+    <html 
+      lang="en" 
+      suppressHydrationWarning 
+      className={`${inter.variable} ${tiroBangla.variable} dark`}
+    >
+      <head>
+        <link rel="canonical" href="https://rubshibir.vercel.app" />
+        <link rel="alternate" href="https://rubshibir.vercel.app" hrefLang="x-default" />
+        <link rel="alternate" href="https://rubshibir.vercel.app" hrefLang="en" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="msvalidate.01" content="900DDDABF9C5BB497C4822D010791EEA" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+        
+        {/* Preload critical assets */}
+        <link
+          rel="preload"
+          href="/icons/apple-touch-icon.png"
+          as="image"
+          type="image/png"
+        />
+        
+        {/* DNS Prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+      </head>
+      <body className="min-h-screen bg-background text-foreground">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <main>
-            {children}
-          </main>
-          <Toaster position="top-center"
-            reverseOrder={false} />
+          {children}
+          <Toaster
+            position="bottom-right"
+            reverseOrder={false} 
+          />
           <BackToTop />
+          <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

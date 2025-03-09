@@ -7,7 +7,8 @@
     "start": "next start",
     "lint": "next lint",
     "build": "next build",
-    "postinstall": "npx prisma generate"
+    "postinstall": "npx prisma generate",
+    "postbuild": "next-sitemap"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -32,6 +33,8 @@
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.78.1",
     "@supabase/supabase-js": "^2.49.1",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.8.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -43,6 +46,7 @@
     "lucide-react": "^0.475.0",
     "next": "^15.1.7",
     "next-sanity": "^9.9.0",
+    "next-sitemap": "^4.2.3",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
