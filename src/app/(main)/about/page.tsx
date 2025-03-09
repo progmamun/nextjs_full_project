@@ -11,7 +11,7 @@ export default function AboutPage() {
                     <div className="flex flex-col items-center gap-8">
                         <div className="w-full">
                             <Image
-                                src='/assets/about.jpg'
+                                src='https://i.ibb.co.com/ZpqGg8dF/about.jpg'
                                 alt="About Us"
                                 width={800}
                                 height={450}
