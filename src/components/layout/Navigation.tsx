@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../theme/ThemeToggle";
 import Logo from "../common/Logo";
@@ -109,10 +109,10 @@ const Navigation = () => {
             </div>
 
             {/* Mobile Navigation Trigger */}
-            <div className="md:hidden flex items-center space-x-2 bg-white text-black dark:bg-gray-900 dark:text-white">
+            <div className="md:hidden flex items-center space-x-2">
               <ModeToggle />
               <Button
-                variant="ghost"
+                variant="default"
                 size="icon"
                 onClick={() => setIsOpen(!isOpen)}
               >
@@ -131,7 +131,7 @@ const Navigation = () => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed inset-0 bg-white dark:bg-gray-900 z-50" // Solid background, no transparency
+            className="fixed inset-0 bg-white dark:bg-gray-900 z-50"
           >
             <div className="flex flex-col h-full">
               {/* Header */}
@@ -141,7 +141,7 @@ const Navigation = () => {
                   className="text-gray-700 hover:text-red-500 dark:text-gray-200"
                   onClick={() => setIsOpen(false)}
                 >
-                  x
+                  <X size={24} />
                 </button>
               </div>
 

@@ -1,10 +1,14 @@
+// app/photo-gallery/page.tsx
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import Image from "next/image";
+// import { Card, CardContent, CardHeader } from "@/components/ui/card";
+// import Image from "next/image";
 import Link from "next/link";
 import { Photo } from "@/types";
 import { getAllPhotos } from "@/utils/getAllPhotos";
 import PaginationControls from "@/components/common/PaginationControls";
+import PageHeading from "@/components/common/PageHeading";
+import LightboxGallery from "@/components/home/LightboxGallery";
+// import LightboxGallery from "@/components/LightboxGallery";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -28,30 +32,10 @@ export default async function PhotoGallery({
   return (
     <div className="min-h-screen bg-background text-foreground dark:bg-gray-900">
       <div className="container mx-auto p-8 max-w-7xl">
-        <h1 className="text-3xl font-bold mb-6 text-center">ফটো গ্যালারি</h1>
+        <PageHeading title="ফটো গ্যালারি" as="h2" className="py-5 text-center" />
         
-        {/* Photo Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {currentPhotos.map((photo) => (
-            <Card key={photo.id} className="overflow-hidden">
-              <CardHeader className="p-0">
-                <div className="relative w-full h-[200px] md:h-[250px]">
-                  <Image
-                    src={photo.image}
-                    alt={photo.title}
-                    fill
-                    loading="lazy"
-                    className="object-cover transition-transform hover:scale-105"
-                    sizes="100vw"
-                  />
-                </div>
-              </CardHeader>
-              <CardContent className="p-4">
-                <h2 className="text-lg font-semibold">{photo.title}</h2>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {/* Photo Grid with Lightbox */}
+        <LightboxGallery photos={currentPhotos} />
 
         {/* Pagination */}
         <PaginationControls

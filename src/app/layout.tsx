@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import '@/styles/globals.css';
+import './globals.css';
 import BackToTop from "@/components/common/BackToTop";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from 'react-hot-toast';
@@ -50,7 +50,7 @@ export default function RootLayout({
         >
           {children}
           <Toaster
-            position="bottom-right"
+            position="top-center"
             reverseOrder={false} 
           />
           <BackToTop />
