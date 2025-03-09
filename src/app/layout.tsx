@@ -22,6 +22,8 @@ export default function RootLayout({
       className={`${inter.variable} ${tiroBangla.variable} dark`}
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="canonical" href="https://rubshibir.vercel.app" />
         <link rel="alternate" href="https://rubshibir.vercel.app" hrefLang="x-default" />
         <link rel="alternate" href="https://rubshibir.vercel.app" hrefLang="en" />
@@ -40,8 +42,6 @@ export default function RootLayout({
         
         {/* DNS Prefetch for external resources */}
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
       </head>
       <body className="min-h-screen bg-background text-foreground">
         <ThemeProvider
