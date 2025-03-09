@@ -44,7 +44,7 @@ const BlogList = ({ posts = [] }: BlogListProps) => {
                 width={0}
                 height={0}
                 quality={75}
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="100vw"
                 className="w-full h-48 object-cover rounded-t-lg group-hover:opacity-90 transition-opacity"
               />
               ) : (

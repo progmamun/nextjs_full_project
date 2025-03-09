@@ -19,22 +19,22 @@ export default async function Gallery() {
         <h1 className="text-3xl font-bold mb-6 text-center">ফটো গ্যালারি</h1>
 
         {/* Featured Photos - 2 columns, 4 images */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {featuredPhotos.map((photo) => (
             <Card key={photo.id} className="overflow-hidden">
               <CardHeader className="p-0">
-                <div className="relative w-full h-[250px] md:h-[300px]">
+                <div className="relative w-full h-[200px] md:h-[250px]">
                   <Image
                     src={photo.image}
                     alt={photo.title}
                     fill
-                    quality={75}
                     loading="lazy"
                     className="object-cover transition-transform hover:scale-105"
+                    sizes="100vw"
                   />
                 </div>
               </CardHeader>
-              <CardContent className="p-4">
+              <CardContent className="pt-4">
                 <h2 className="text-lg font-semibold">{photo.title}</h2>
               </CardContent>
             </Card>
