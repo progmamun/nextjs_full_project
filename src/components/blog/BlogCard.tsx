@@ -41,7 +41,8 @@ const BlogCard = ({ posts = [] }: BlogListProps) => {
                 alt={post.mainImage.alt || post.title}
                 width={0}  // Required by Next.js, set to 0 for auto
                 height={0} // Required by Next.js, set to 0 for auto
-                sizes="100vw" // Helps with responsive images
+                quality={75}
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="w-full h-48 object-cover rounded-t-lg group-hover:opacity-90 transition-opacity"
               />
               ) : (

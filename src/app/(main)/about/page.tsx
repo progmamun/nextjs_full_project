@@ -16,6 +16,9 @@ export default function AboutPage() {
                                 width={800}
                                 height={450}
                                 className="rounded-lg shadow-lg object-cover w-full h-auto"
+                                priority
+                                quality={50}
+                                sizes="100vw"
                             />
                         </div>
                         <div className="w-full space-y-4">

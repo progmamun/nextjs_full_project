@@ -43,7 +43,8 @@ const BlogList = ({ posts = [] }: BlogListProps) => {
                 alt={post.mainImage.alt || post.title}
                 width={0}
                 height={0}
-                sizes="100vw"
+                quality={75}
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="w-full h-48 object-cover rounded-t-lg group-hover:opacity-90 transition-opacity"
               />
               ) : (

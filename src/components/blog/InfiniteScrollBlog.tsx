@@ -180,7 +180,8 @@ export default function InfiniteScrollBlog({ initialPost }: InfiniteScrollBlogPr
                     alt={post.mainImage.alt || `${post.title} main image`}
                     width={800}
                     height={450}
-                    sizes="100vw"
+                    quality={75}
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="w-full h-auto rounded-lg object-cover"
                     priority={postId === initialPost._id}
                   />

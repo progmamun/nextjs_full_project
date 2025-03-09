@@ -28,6 +28,8 @@ export default async function Gallery() {
                     src={photo.image}
                     alt={photo.title}
                     fill
+                    quality={75}
+                    loading="lazy"
                     className="object-cover transition-transform hover:scale-105"
                   />
                 </div>

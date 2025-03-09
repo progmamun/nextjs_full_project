@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import defaultMetadata from './metadata';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { inter, tiroBangla } from '@/lib/fonts';
+import { inter, notoSansBengali } from '@/lib/fonts';
 
 export const metadata: Metadata = defaultMetadata;
 
@@ -17,13 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html 
-      lang="en" 
+      lang="bn" 
       suppressHydrationWarning 
-      className={`${inter.variable} ${tiroBangla.variable} dark`}
+      className={`${inter.variable} ${notoSansBengali.variable} dark`}
     >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="canonical" href="https://rubshibir.vercel.app" />
         <link rel="alternate" href="https://rubshibir.vercel.app" hrefLang="x-default" />
         <link rel="alternate" href="https://rubshibir.vercel.app" hrefLang="en" />
@@ -43,7 +41,7 @@ export default function RootLayout({
         {/* DNS Prefetch for external resources */}
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
       </head>
-      <body className="min-h-screen bg-background text-foreground">
+      <body className={`min-h-screen bg-background text-foreground font-bengali`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

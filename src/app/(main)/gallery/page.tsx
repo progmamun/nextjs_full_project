@@ -40,7 +40,9 @@ export default async function PhotoGallery({
                     src={photo.image}
                     alt={photo.title}
                     fill
+                    loading="lazy"
                     className="object-cover transition-transform hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
               </CardHeader>
