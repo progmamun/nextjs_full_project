@@ -91,7 +91,7 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ items }) => {
             <X size={24} />
           </button>
           <button
-            className="absolute left-0 md:left-[-60px] top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition-all z-[60]"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition-all z-[60]"
             onClick={goToPrevious}
             aria-label="Previous image"
           >
@@ -105,12 +105,12 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ items }) => {
             <ChevronRight size={28} />
           </button>
           <div className="w-full max-w-4xl p-4 flex flex-col items-center">
-              <Image
-                src={items[selectedIndex].image}
-                alt={items[selectedIndex].title}
-                fill
-                className="object-contain"
-              />
+            <Image
+              src={items[selectedIndex].image}
+              alt={items[selectedIndex].title}
+              fill
+              className="object-contain"
+            />
             <div className="bg-black bg-opacity-75 p-4 text-white text-center mt-2 w-full">
               <h2 className="text-xl font-semibold">{items[selectedIndex].title}</h2>
             </div>
