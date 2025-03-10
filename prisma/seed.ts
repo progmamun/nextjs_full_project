@@ -69,18 +69,18 @@
 
 
 // for admin
-import { prisma } from '@/lib/prisma';
+// import { prisma } from '@/lib/prisma';
 
-async function main() {
-  await prisma.admin.upsert({
-    where: { id: 'user_2u7Wqmyab5zjJKd9khwqaNM9VDF' }, // Replace with actual Clerk userId
-    update: {},
-    create: {
-      id: 'user_2u7Wqmyab5zjJKd9khwqaNM9VDF',
-      email: 'admin@shibir.com',
-    },
-  });
-  console.log('Admin user created');
-}
+// async function main() {
+//   await prisma.admin.upsert({
+//     where: { id: 'user_2u7Wqmyab5zjJKd9khwqaNM9VDF' }, // Replace with actual Clerk userId
+//     update: {},
+//     create: {
+//       id: 'user_2u7Wqmyab5zjJKd9khwqaNM9VDF',
+//       email: 'admin@shibir.com',
+//     },
+//   });
+//   console.log('Admin user created');
+// }
 
-main().catch(console.error).finally(() => prisma.$disconnect());
+// main().catch(console.error).finally(() => prisma.$disconnect());

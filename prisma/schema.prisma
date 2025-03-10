@@ -7,11 +7,18 @@ datasource db {
   url      = env("DATABASE_URL") // Supabase PostgreSQL URL
 }
 
+model User {
+  id        String   @id // Clerk's userId (e.g., "user_2...")
+  email     String   @unique
+  createdAt DateTime // Controlled by Clerk's created_at
+  updatedAt DateTime // Controlled by Clerk's updated_at
+}
+
 model Admin {
   id        String   @id // Clerk's userId (e.g., "user_2...")
   email     String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime // Controlled by Clerk's created_at
+  updatedAt DateTime // Controlled by Clerk's updated_at
 }
 
 model Student {
