@@ -1,13 +1,17 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../theme/ThemeToggle";
 import Logo from "../common/Logo";
-import { motion, AnimatePresence } from "framer-motion";
-import { usePathname } from "next/navigation";
-import { SignOutButton, useUser } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 interface NavLink {
   href: string;
@@ -21,7 +25,15 @@ const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const { isSignedIn } = useUser();
+
+  const navLinks: NavLink[] = [
+    { href: "/blog", label: "ব্লগ" },
+    { href: "/about", label: "সংক্ষিপ্ত পরিচিতি" },
+    { href: "/peoples", label: "দায়িত্বশীলবৃন্দ" },
+    { href: "/advice", label: "পরামর্শ/এহতেসাব" },
+    { href: "/quiz", label: "কুইজ" },
+    { href: "https://www.icsbook.info", label: "অনলাইন লাইব্রেরি" },
+  ];
 
   // Handle initial mounting
   useEffect(() => {
@@ -56,14 +68,6 @@ const Navigation: React.FC = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, mounted]);
-
-  const navLinks: NavLink[] = [
-    { href: "/blog", label: "ব্লগ" },
-    { href: "/about", label: "সংক্ষিপ্ত পরিচিতি" },
-    { href: "/peoples", label: "দায়িত্বশীলবৃন্দ" },
-    { href: "/advice", label: "পরামর্শ/এহতেসাব" },
-    { href: "/quiz", label: "কুইজ" },
-    { href: "https://www.icsbook.info", label: "অনলাইন লাইব্রেরি" }  ];
 
   // Return null or a loading state before mounting to avoid hydration mismatch
   if (!mounted) {
@@ -109,24 +113,40 @@ const Navigation: React.FC = () => {
                   {link.label}
                 </Link>
               ))}
+              <SignedOut>
+                <SignInButton>
+                  <button className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors">
+                    লগইন
+                  </button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <UserButton
+                  appearance={{
+                    elements: {
+                      userButtonAvatarBox: "h-10 w-10",
+                      userButtonPopoverCard: "dark:bg-gray-800 dark:text-white",
+                    },
+                  }}
+                />
+              </SignedIn>
             </div>
 
             {/* Mobile Navigation Trigger */}
             <div className="md:hidden flex items-center space-x-2">
               <ModeToggle />
-              <Button
-                variant="default"
-                size="icon"
+              <button
+                className="p-2 text-gray-700 hover:text-blue-600 dark:text-gray-200"
                 onClick={() => setIsOpen(!isOpen)}
               >
                 <Menu className="h-6 w-6" />
-              </Button>
+              </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Navigation Menu (Moved outside nav) */}
+      {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -160,11 +180,23 @@ const Navigation: React.FC = () => {
                     {link.label}
                   </Link>
                 ))}
-                {isSignedIn && (
-                  <span>
-                    <SignOutButton />
-                  </span>
-                )}
+                <SignedOut>
+                  <SignInButton fallbackRedirectUrl={'/dashboard'}>
+                    <button className="py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors">
+                      লগইন
+                    </button>
+                  </SignInButton>
+                </SignedOut>
+                <SignedIn>
+                  <UserButton
+                    appearance={{
+                      elements: {
+                        userButtonAvatarBox: "h-10 w-10",
+                        userButtonPopoverCard: "dark:bg-gray-800 dark:text-white",
+                      },
+                    }}
+                  />
+                </SignedIn>
               </div>
             </div>
           </motion.div>
