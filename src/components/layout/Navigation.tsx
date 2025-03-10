@@ -7,14 +7,21 @@ import { ModeToggle } from "../theme/ThemeToggle";
 import Logo from "../common/Logo";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { SignOutButton, useUser } from "@clerk/nextjs";
 
-const Navigation = () => {
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+const Navigation: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { isSignedIn } = useUser();
 
   // Handle initial mounting
   useEffect(() => {
@@ -50,15 +57,13 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, mounted]);
 
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { href: "/blog", label: "ব্লগ" },
     { href: "/about", label: "সংক্ষিপ্ত পরিচিতি" },
     { href: "/peoples", label: "দায়িত্বশীলবৃন্দ" },
     { href: "/advice", label: "পরামর্শ/এহতেসাব" },
     { href: "/quiz", label: "কুইজ" },
-    { href: "https://www.icsbook.info", label: "অনলাইন লাইব্রেরি" },
-    { href: "/sign-in", label: "লগ-ইন" }
-  ];
+    { href: "https://www.icsbook.info", label: "অনলাইন লাইব্রেরি" }  ];
 
   // Return null or a loading state before mounting to avoid hydration mismatch
   if (!mounted) {
@@ -104,7 +109,6 @@ const Navigation = () => {
                   {link.label}
                 </Link>
               ))}
-              
             </div>
 
             {/* Mobile Navigation Trigger */}
@@ -156,6 +160,11 @@ const Navigation = () => {
                     {link.label}
                   </Link>
                 ))}
+                {isSignedIn && (
+                  <span>
+                    <SignOutButton />
+                  </span>
+                )}
               </div>
             </div>
           </motion.div>

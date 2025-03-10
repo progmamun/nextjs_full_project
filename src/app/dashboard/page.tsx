@@ -95,7 +95,7 @@ export default async function Dashboard({ searchParams }: DashboardProps) {
   });
 
   if (!admin) {
-    redirect('/sign-in');
+    redirect('/');
   }
 
   // Await the searchParams
