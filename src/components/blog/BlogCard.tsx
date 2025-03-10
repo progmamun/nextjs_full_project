@@ -62,7 +62,7 @@ const BlogCard = ({ posts = [] }: BlogListProps) => {
             </CardHeader>
 
             <CardContent className="flex-grow">
-              <p className="text-gray-600 line-clamp-3 mb-4">
+              <p className="dark:text-white line-clamp-3 mb-4">
                 {post.body && post.body.length > 0 && post.body[0].children
                   ? post.body[0].children[0].text.slice(0, 100) + '...'
                   : 'No description available.'}
@@ -82,7 +82,7 @@ const BlogCard = ({ posts = [] }: BlogListProps) => {
             </CardContent>
 
             <CardFooter className="flex justify-between items-center">
-              <div className="flex items-center gap-4 text-sm text-gray-500">
+              <div className="flex items-center gap-4 text-sm text-slate-500">
                 <span className="flex items-center gap-1">
                   <CalendarDays size={16} />
                   {formatDateToBangla(post.publishedAt)}

@@ -66,7 +66,6 @@ export default function LightboxGallery({ photos }: LightboxGalleryProps) {
                                     fill
                                     loading="lazy"
                                     className="object-cover transition-transform hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
                             </div>
                         </CardHeader>
@@ -80,7 +79,7 @@ export default function LightboxGallery({ photos }: LightboxGalleryProps) {
             {/* Lightbox Modal */}
             {selectedIndex !== null && (
                 <div
-                    className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center"
+                    className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
                     onClick={closeLightbox}
                     onKeyDown={handleKeyDown}
                     tabIndex={0}
@@ -97,41 +96,36 @@ export default function LightboxGallery({ photos }: LightboxGalleryProps) {
                         <X size={24} />
                     </button>
 
-                    <div className="relative w-full max-w-4xl p-4 flex flex-col items-center">
-                        {/* Image container */}
-                        <div className="relative w-full flex items-center justify-between">
-                            {/* Previous button */}
-                            <button
-                                className="absolute left-0 md:left-[-60px] top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition-all z-[60]"
-                                onClick={goToPrevious}
-                                aria-label="Previous image"
-                            >
-                                <ChevronLeft size={28} />
-                            </button>
+                    <div className="relative w-full max-w-4xl flex items-center justify-center">
+                        {/* Previous button */}
+                        <button
+                            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition-all z-[60]"
+                            onClick={goToPrevious}
+                            aria-label="Previous image"
+                        >
+                            <ChevronLeft size={28} />
+                        </button>
 
-                            {/* Image */}
+                        {/* Image */}
+                        <Image
+                            src={photos[selectedIndex].image}
+                            alt={photos[selectedIndex].title}
+                            width={800}
+                            height={600}
+                            className="max-h-[75vh] max-w-full object-contain z-[55]"
+                        />
 
-                            <Image
-                                src={photos[selectedIndex].image}
-                                alt={photos[selectedIndex].title}
-                                width={800} // Adjust as needed
-                                height={600} // Adjust as needed
-                                className="max-h-[75vh] max-w-full object-contain z-[55]"
-                            />
-
-
-                            {/* Next button */}
-                            <button
-                                className="absolute right-0 md:right-[-60px] top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition-all z-[60]"
-                                onClick={goToNext}
-                                aria-label="Next image"
-                            >
-                                <ChevronRight size={28} />
-                            </button>
-                        </div>
+                        {/* Next button */}
+                        <button
+                            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition-all z-[60]"
+                            onClick={goToNext}
+                            aria-label="Next image"
+                        >
+                            <ChevronRight size={28} />
+                        </button>
 
                         {/* Title */}
-                        <div className="bg-black bg-opacity-75 p-4 text-white text-center mt-2 w-full">
+                        <div className="absolute bottom-0 bg-black bg-opacity-50 p-4 text-white text-center w-full">
                             <h2 className="text-xl font-semibold">{photos[selectedIndex].title}</h2>
                         </div>
                     </div>

@@ -1,14 +1,11 @@
-// app/photo-gallery/page.tsx
 import { Button } from "@/components/ui/button";
-// import { Card, CardContent, CardHeader } from "@/components/ui/card";
-// import Image from "next/image";
 import Link from "next/link";
 import { Photo } from "@/types";
 import { getAllPhotos } from "@/utils/getAllPhotos";
 import PaginationControls from "@/components/common/PaginationControls";
 import PageHeading from "@/components/common/PageHeading";
-import LightboxGallery from "@/components/home/LightboxGallery";
-// import LightboxGallery from "@/components/LightboxGallery";
+import LightboxGallery from "@/components/gallery/LightboxGallery";
+
 
 const ITEMS_PER_PAGE = 9;
 
