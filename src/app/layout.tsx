@@ -7,6 +7,7 @@ import defaultMetadata from './metadata';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { inter, notoSansBengali } from '@/lib/fonts';
+import { ClerkProvider } from '@clerk/nextjs';
 
 export const metadata: Metadata = defaultMetadata;
 
@@ -16,6 +17,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    <ClerkProvider>
     <html 
       lang="bn" 
       suppressHydrationWarning 
@@ -59,5 +61,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+    </ClerkProvider>
   )
 }

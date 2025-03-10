@@ -57,6 +57,7 @@ const Navigation = () => {
     { href: "/advice", label: "পরামর্শ/এহতেসাব" },
     { href: "/quiz", label: "কুইজ" },
     { href: "https://www.icsbook.info", label: "অনলাইন লাইব্রেরি" },
+    { href: "/sign-in", label: "লগ-ইন" }
   ];
 
   // Return null or a loading state before mounting to avoid hydration mismatch
@@ -77,15 +78,12 @@ const Navigation = () => {
   return (
     <>
       <nav
-        className={`${
-          lastScrollY === 0 ? "relative" : "fixed"
-        } w-full z-50 transition-all duration-300 ${
-          isVisible ? "top-0" : "-top-24"
-        } ${
-          isScrolled
+        className={`${lastScrollY === 0 ? "relative" : "fixed"
+          } w-full z-50 transition-all duration-300 ${isVisible ? "top-0" : "-top-24"
+          } ${isScrolled
             ? "bg-white/80 backdrop-blur-md shadow-md dark:bg-gray-900/80"
             : "bg-white dark:bg-gray-900"
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -106,6 +104,7 @@ const Navigation = () => {
                   {link.label}
                 </Link>
               ))}
+              
             </div>
 
             {/* Mobile Navigation Trigger */}

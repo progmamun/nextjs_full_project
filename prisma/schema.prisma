@@ -7,6 +7,13 @@ datasource db {
   url      = env("DATABASE_URL") // Supabase PostgreSQL URL
 }
 
+model Admin {
+  id        String   @id // Clerk's userId (e.g., "user_2...")
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Student {
   id        String        @id @default(uuid())
   name      String
