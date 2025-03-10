@@ -105,14 +105,12 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ items }) => {
             <ChevronRight size={28} />
           </button>
           <div className="w-full max-w-4xl p-4 flex flex-col items-center">
-            <div style={{ position: "relative", width: "100%", maxHeight: "75vh" }}>
               <Image
                 src={items[selectedIndex].image}
                 alt={items[selectedIndex].title}
                 fill
                 className="object-contain"
               />
-            </div>
             <div className="bg-black bg-opacity-75 p-4 text-white text-center mt-2 w-full">
               <h2 className="text-xl font-semibold">{items[selectedIndex].title}</h2>
             </div>

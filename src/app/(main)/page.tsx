@@ -12,11 +12,6 @@ import { Post } from '@/types/post';
 import { BlogFilters, getAllBlogs } from '@/utils/getAllBlogs';
 import { getAllEvents } from '@/utils/getAllEvents';
 import { getAllPhotos } from '@/utils/getAllPhotos';
-// import dynamic from 'next/dynamic';
-
-// const MasonryGrid = dynamic(() => import("@/components/gallery/MasonryGrid"), {
-//   ssr: false,
-// });
 
 const events: Event[] = await getAllEvents();
 const photos: Photo[] = await getAllPhotos();

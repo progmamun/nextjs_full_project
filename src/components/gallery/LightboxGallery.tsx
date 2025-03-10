@@ -1,4 +1,3 @@
-// components/LightboxGallery.tsx
 'use client';
 
 import { useState } from 'react';
@@ -64,7 +63,6 @@ export default function LightboxGallery({ photos }: LightboxGalleryProps) {
                                     src={photo.image}
                                     alt={photo.title}
                                     fill
-                                    loading="lazy"
                                     className="object-cover transition-transform hover:scale-105"
                                 />
                             </div>
