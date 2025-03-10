@@ -14,7 +14,9 @@ import { getAllEvents } from '@/utils/getAllEvents';
 import { getAllPhotos } from '@/utils/getAllPhotos';
 
 const events: Event[] = await getAllEvents();
+
 const photos: Photo[] = await getAllPhotos();
+const sortedPhotos = photos.sort((a, b) => Number(b.id) - Number(a.id));
 
 const filters: BlogFilters = { sortOrder: 'desc', limit: 5 };
 const posts: Post[] = await getAllBlogs(filters);
@@ -28,7 +30,7 @@ export default function HomePage() {
       <OurMission/>
       <GreatPrev/>
       <UpcomingEventsPage events={events} />
-      <MasonryGrid items={photos.slice(0, 6)} />
+      <MasonryGrid items={sortedPhotos.slice(0, 6)} />
       <AdvicePreview/>
       <FeaturedBlogs posts={posts} />
     </>
